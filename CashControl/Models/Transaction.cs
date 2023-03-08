@@ -9,7 +9,7 @@ namespace CashControl.Models
         [Key]
         public int TransactionID { get; set; }
 
-        //Cheie straina Category
+        //Cheie straina Category + Navigation Property
         public int CategoryID { get; set; }
         public Category Category { get; set; }
         //
