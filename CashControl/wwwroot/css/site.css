@@ -9,15 +9,60 @@ html {
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
+    font-family: "Oswald";
+}
+
+*:not(.fa-solid):not(.fa):not(.e-icons) {
+    font-family: "Oswald";
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    background-color: floralwhite;
 }
-/*
+
 .e-bigger{
     font-size : x-large;
 }
-*/
+
+/* Butoane radio*/
+
+.btn-group.custom-rbt-group {
+    width: 100%;
+}
+
+    .btn-group.custom-rbt-group.btn-check {
+        width: 50%;
+    }
+
+.custom-rbt-group label.btn-check {
+    box-shadow: none !important;
+    border: 1px solid #fff;
+    background-color: rgb(34 43 51);
+    color: #fff;
+}
+
+.btn-group.custom-rbt-group input:checked + label.btn-check {
+    background-color: #fff;
+    color: #212b36;
+    border: 1px solid #fff;
+}
+
+/* Pentru a centra componente*/
+.child {
+    margin: 0 auto;
+}
+
+/* Box pentru styling*/
+
+.box{
+    border-radius:1rem;
+    background-color: #fff7e6;
+}
+
+/*Grid pentru tranzactii si categorii*/
+
+
+/**/

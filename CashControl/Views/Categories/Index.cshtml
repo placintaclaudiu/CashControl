@@ -9,6 +9,51 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+
+<div class="row">
+    <div class=" = col-md-7 child box">
+        <ejs-grid id="categories" gridLines="None" dataSource="@Model" allowSorting="true">
+            <e-grid-pagesettings pageSize="10"></e-grid-pagesettings>
+            <e-grid-columns>
+                <e-grid-column headerText="Categorie" field="DeunumireCuEmoji"></e-grid-column>
+                <e-grid-column headerText="Tip" template="#ColoanaTipTemplate" width="150px"></e-grid-column>
+                <e-grid-column headerText="Actiuni" template="#ActiuniCRUDTemplate"></e-grid-column>
+            </e-grid-columns>
+        </ejs-grid>
+    </div>
+</div>
+
+<script id="ColoanaTipTemplate" type="text/x-template">
+    ${if(Type=="Venit")}
+    <span class="badge bg-success">${Type}</span>
+    ${else}
+        <span class="badge bg-danger">${Type}</span>
+    ${/if}
+</script>
+
+
+<script id="ActiuniCRUDTemplate" type="text/x-template">
+    <div class="d-flex flex-row justify-content-start">
+        @*Pentru butonul de edit*@
+        <a class="btn btn-sm" href="/Categories/Edit/${CategoryID}">
+            <i class="bi bi-pencil-square"></i> 
+        </a>
+        @*Pentru butonul de delete*@
+        <form action="/Categories/Delete/${CategoryID}" method="post">
+            @Html.AntiForgeryToken()
+            <button type="submit" class="btn btn-sm" onclick="return confirm(&quot;Sigur doresti sa stergi aceasta categorie?&quot;)">
+                <i class="bi bi-trash3-fill"></i>
+            </button>           
+        </form>
+    </div>
+</script>
+
+@*
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
 <table class="table">
     <thead>
         <tr>
@@ -45,3 +90,8 @@
 }
     </tbody>
 </table>
+*@
+
+
+
+

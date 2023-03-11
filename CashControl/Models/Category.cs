@@ -18,5 +18,14 @@ namespace CashControl.Models
         [Column(TypeName = "nvarchar(10)")]
         public string Type { get; set; } = "Cheltuiala";
 
+        [NotMapped]
+
+        public string? DeunumireCuEmoji {
+            get
+            {
+                return this.Emoji + " " + this.Name;
+            } 
+        }
+
     }
 }
