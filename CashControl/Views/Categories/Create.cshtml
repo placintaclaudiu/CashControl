@@ -1,11 +1,12 @@
 ﻿@model CashControl.Models.Category
 
 @{
-    ViewData["Title"] = "Create";
+    //ViewData["Title"] = "Create";
+    ViewData["TitluPagina"] = "Creeaza o noua categorie";
 }
 
-<h1>Creeaza o noua categorie</h1>
-<hr />
+@*<h1>Creeaza o noua categorie</h1>
+*@<hr />
 
 
 <div class="row">
@@ -48,8 +49,14 @@
 </div>
 <hr />
 
-<div>
+@*<div>
     <a asp-action="Index">Back to List</a>
+</div>*@
+
+<div>
+    <a asp-action="Index">
+        <button class="btn btn-danger">Inapoi</button>
+    </a>
 </div>
 
 @section Scripts {

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - CashControl</title>
+    <title>CashControl</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     @*<link rel="stylesheet" href="https://cdn.syncfusion.com/ej2/20.4.48/material.css" />*@
     <link href="https://cdn.syncfusion.com/ej2/20.4.48/bootstrap5.css" rel="stylesheet" />
@@ -17,7 +17,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">CashControl</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"> <img class ="navbar-logo" src="~/poze/money_icon.png" /> </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -38,10 +38,38 @@
             </div>
         </nav>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="com-md-10">
+                <main role="main" class="pb-3">
+                    <div class="row">
+                        <div class="col-md-7">
+                            <div class="d-flex flex-column mb-5">
+                                <div class="d-flex mb-1 child"> @*clasa child pt centrare*@
+                                    <div class="flex-grow-1">
+                                        <h3 class="fw-bold">@ViewData["TitluPagina"]</h3>
+                                    </div>
+                                    <div>
+                                        @if (ViewData["CreareText"] != null)
+                                        {
+                                             <a class="btn btn-success" href="@ViewData["CreareURL"]">
+                                            @ViewData["CreareText"]
+                                        </a>
+                                        }                                      
+                                    </div>
+                                </div>
+                                @* portiunea pentru breadcrumb*@
+                                <ejs-breadcrumb id="breadcrumb">
+
+                                </ejs-breadcrumb>
+                            </div>
+                        </div>
+                    </div>
+                    @RenderBody()
+                </main>
+            </div>
+        </div>
+        
     </div>
 
     <footer class="border-top footer text-muted">

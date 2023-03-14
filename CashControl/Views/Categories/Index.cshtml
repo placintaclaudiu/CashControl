@@ -1,14 +1,17 @@
 ﻿@model IEnumerable<CashControl.Models.Category>
 
 @{
-    ViewData["Title"] = "Index";
+    //ViewData["Title"] = "Index";
+    ViewData["TitluPagina"] = "Categorii";
+    ViewData["CreareText"] = "+ Categorie";
+    ViewData["CreareURL"] = "/Categories/Create";
 }
 
-<h1>Index</h1>
-
-<p>
+@*<h1>Index</h1>
+*@
+@*<p>
     <a asp-action="Create">Create New</a>
-</p>
+</p>*@
 
 <div class="row">
     <div class=" = col-md-7 child box">
