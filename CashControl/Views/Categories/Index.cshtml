@@ -12,8 +12,12 @@
 @*<p>
     <a asp-action="Create">Create New</a>
 </p>*@
+<ejs-breadcrumb id="breadcrumb" style="position:relative; left:250px; top:2px;">
+
+</ejs-breadcrumb>
 
 <div class="row">
+
     <div class=" = col-md-7 child box">
         <ejs-grid id="categories" gridLines="None" dataSource="@Model" allowSorting="true">
             <e-grid-pagesettings pageSize="10"></e-grid-pagesettings>

@@ -49,7 +49,7 @@
                                     <div class="flex-grow-1">
                                         <h3 class="fw-bold">@ViewData["TitluPagina"]</h3>
                                     </div>
-                                    <div>
+                                    <div style="position:relative; left:550px; top:2px;">
                                         @if (ViewData["CreareText"] != null)
                                         {
                                              <a class="btn btn-success" href="@ViewData["CreareURL"]">
@@ -59,9 +59,7 @@
                                     </div>
                                 </div>
                                 @* portiunea pentru breadcrumb*@
-                                <ejs-breadcrumb id="breadcrumb">
-
-                                </ejs-breadcrumb>
+                              @*  <ejs-breadcrumb id="breadcrumb"></ejs-breadcrumb>*@
                             </div>
                         </div>
                     </div>
