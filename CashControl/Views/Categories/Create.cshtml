@@ -8,6 +8,34 @@
 @*<h1>Creeaza o noua categorie</h1>
 *@
 
+@*<style>
+    .btn-outline-primary.active {
+        background-color: red;
+        color: white;
+    }
+
+    .btn-outline-success.active {
+        background-color: green;
+        color: white;
+    }
+</style>*@
+
+<style>
+    /* Style pentru butonul Cheltuiala cand este apasat */
+    input[value="Cheltuiala"]:checked + .btn-cheltuiala {
+        background-color: red;
+        color: white;
+        outline:none;
+    }
+
+    /* Style pentru butonul Venit cand este apasat */
+    input[value="Venit"]:checked + .btn-venit {
+        background-color: green;
+        color: white;
+        outline: none;
+    }
+</style>
+
 <ejs-breadcrumb id="breadcrumb">
 
 </ejs-breadcrumb>
@@ -23,24 +51,32 @@
                 @* Grupul de butoane pentru alegerea tipului cu bootstrap*@
                 <div class="btn-group custom-rbt-group mb-3" role="group" aria-label="Basic radio toggle button group">
                     <input type="radio" class="btn-check" name="Type" value="Cheltuiala" id="btnradio1" autocomplete="off" checked="@(Model.Type=="Cheltuiala")">
-                    <label class="btn btn-outline-primary" for="btnradio1">Cheltuiala</label>
+                    <label class="btn btn-outline-primary btn-cheltuiala" for="btnradio1">Cheltuiala</label>
 
                     <input type="radio" class="btn-check" name="Type" value="Venit" id="btnradio2" autocomplete="off" checked="@(Model.Type=="Venit")">
-                    <label class="btn btn-outline-primary" for="btnradio2">Venit</label>
-                </div>
+                    <label class="btn btn-outline-primary btn-venit" for="btnradio2">Venit</label>
+               </div>
 
+
+                @*<div class="btn-group custom-rbt-group mb-3" role="group" aria-label="Basic radio toggle button group">
+                    <input type="radio" class="btn-check" name="Type" value="Cheltuiala" id="btnradio1" autocomplete="off" @(Model.Type=="Cheltuiala" ? "checked" : "")>
+                    <label class="btn btn-outline-primary" for="btnradio1">Cheltuiala</label>
+
+                    <input type="radio" class="btn-check" name="Type" value="Venit" id="btnradio2" autocomplete="off" @(Model.Type=="Venit" ? "checked" : "")>
+                    <label class="btn btn-outline-success" for="btnradio2">Venit</label>
+                </div>*@
 
                 @*Text box syncfusion*@
                 <div class="mb-3">
                     <ejs-textbox id="name" placeholder="Name" ejs-for="Name" floatLabelType="Auto"></ejs-textbox>
-                    <span asp-validation-for="Name" class="text-danger"></span>
+                    <span asp-validation-for="Name" class="text-danger fs-5"></span>
                 </div>
 
 
                 @*Text box syncfusion*@
                 <div class="mb-3">
                     <ejs-textbox id="emoji" placeholder="Emoji" ejs-for="Emoji" floatLabelType="Auto"></ejs-textbox>
-                    <span asp-validation-for="Emoji" class="text-danger"></span>
+                    <span asp-validation-for="Emoji" class="text-danger fs-5"></span>
                 </div>
 
                 @* Buton submit*@

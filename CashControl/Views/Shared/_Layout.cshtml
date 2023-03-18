@@ -23,12 +23,15 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+                    <ul class="navbar-nav d-flex justify-content-center flex-grow-1">  @* Am adaugat d-flex si justify content pentru a centra elementele din navbar*@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Acasa</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Categories" asp-action="Index">Categorii</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Transactions" asp-action="Index">Tranzactii</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
@@ -52,7 +55,7 @@
                                     <div style="position:relative; left:550px; top:2px;">
                                         @if (ViewData["CreareText"] != null)
                                         {
-                                             <a class="btn btn-success" href="@ViewData["CreareURL"]">
+                                             <a class="btn btn-success" style="color: white" href="@ViewData["CreareURL"]">
                                             @ViewData["CreareText"]
                                         </a>
                                         }                                      

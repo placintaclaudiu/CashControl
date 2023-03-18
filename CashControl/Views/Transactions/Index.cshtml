@@ -1,0 +1,94 @@
+﻿@model IEnumerable<CashControl.Models.Transaction>
+
+@{
+    //ViewData["Title"] = "Index";
+    ViewData["TitluPagina"] = "Tranzactii";
+    ViewData["CreareText"] = "+ Tranzactie noua";
+    ViewData["CreareURL"] = "/Transactions/Create";
+}
+
+@*<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>*@
+<ejs-breadcrumb id="breadcrumb">
+
+</ejs-breadcrumb>
+
+<div class="row">
+    <div class=" = col-md-7 child box">
+        <ejs-grid id="transactions" gridLines="None" dataSource="@Model" allowSorting="true" allowPaging="true" >
+            <e-grid-pagesettings pageSize="7"></e-grid-pagesettings>
+            <e-grid-columns>
+                <e-grid-column headerText="Categorie" field="CategorieCuEmoji"></e-grid-column>
+                <e-grid-column headerText="Data transactiei" field="Date" width="150px" type="date" format="dd/MMM/yy"
+                textAlign="Left"></e-grid-column>
+                <e-grid-column headerText="Total tranzactie" field="SumaCorecta" width="150px" textAlign="Right"></e-grid-column>
+                <e-grid-column headerText="Actiuni" template="#ActiuniCRUDTemplate" textAlign="Center"></e-grid-column>
+           </e-grid-columns>
+        </ejs-grid>
+    </div>
+</div>
+
+<script id="ActiuniCRUDTemplate" type="text/x-template">
+    <div class="d-flex flex-row justify-content-start d-flex justify-content-center">
+    @*Pentru butonul de edit*@
+        <a class="btn btn-sm" href="/Transactions/Edit/${TransactionID}">
+            <i class="bi bi-pencil-square"></i>
+        </a>
+    @*Pt butonul de detalii*@
+        <a class="btn btn-sm" href="/Transactions/Details/${TransactionID}">
+            <i class="bi bi-info-circle"></i>
+        </a>
+    @*Pentru butonul de delete*@
+        <form action="/Transactions/Delete/${TransactionID}" method="post">
+    @Html.AntiForgeryToken()
+            <button type="submit" class="btn btn-sm" onclick="return confirm(&quot;Sigur doresti sa stergi aceasta tranzactie?&quot;)">
+                <i class="bi bi-trash3-fill"></i>
+            </button>
+        </form>
+    </div>
+</script>
+@*<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Total)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.CategoryID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Total)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.TransactionID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.TransactionID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.TransactionID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>*@

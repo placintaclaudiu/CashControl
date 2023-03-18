@@ -1,0 +1,71 @@
+﻿@model CashControl.Models.Transaction
+
+@{
+    //ViewData["Title"] = "Create";
+    ViewData["TitluPagina"] = "Creeaza o noua tranzactie";
+}
+
+@*<h1>Create</h1>
+
+<h4>Transaction</h4>*@
+<ejs-breadcrumb id="breadcrumb">
+
+</ejs-breadcrumb>
+<hr />
+<div class="row">
+    <div class="col-md-7 child box">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="mb-3">
+               @* <label asp-for="CategoryID" class="control-label"></label>
+                <select asp-for="CategoryID" class ="form-control" asp-items="ViewBag.CategoryID"></select>*@
+                <ejs-dropdownlist id="DropDownListCategory" ejs-for="CategoryID" dataSource="@ViewBag.Categories" 
+                placeholder="Category" floatLabelType="Auto" allowFiltering="true"
+                ignoreAccent="true" filterType="Contains" popupHeight="200px">
+                    <e-dropdownlist-fields value="CategoryID" text="DeunumireCuEmoji" ></e-dropdownlist-fields>
+                </ejs-dropdownlist>
+                <span asp-validation-for="CategoryID" class="text-danger fs-5"></span>
+
+            </div>
+            <div class="mb-3">
+               @* <label asp-for="Total" class="control-label"></label>
+                <input asp-for="Total" class="form-control" />*@
+                <ejs-numerictextbox id="total" ejs-for="Total" placeholder="Total" floatLabelType="Auto"
+                min=0 format="c2"></ejs-numerictextbox>
+                <span asp-validation-for="Total" class="text-danger fs-5"></span>
+            </div>
+            <div class="mb-3">
+                @*<label asp-for="Date" class="control-label"></label>
+                <input asp-for="Date" class="form-control" />*@
+                <ejs-datepicker id="date" ejs-for="Date" placeholder="Date" floatLabelType="Always" format="dd/MMM/yy"></ejs-datepicker>
+               @* <span asp-validation-for="Date" class="text-danger fs-5"></span>*@
+            </div>
+            <div class="mb-3">
+                @*<label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />*@
+                <ejs-textbox id="description" placeholder="Description" ejs-for="Description" floatLabelType="Auto" multiline="true"></ejs-textbox>
+                <span asp-validation-for="Description" class="text-danger fs-5"></span>
+            </div>
+        
+            @* Buton submit*@
+            <div class="mb-3">
+                <input type="submit" value="Creeaza" class="btn btn-success" style="border:1px; margin-right: 10px;" />
+            </div>
+        </form>
+    </div>
+</div>
+<hr />
+
+@*<div>
+    <a asp-action="Index">Back to List</a>
+</div>*@
+
+<div>
+    <a asp-action="Index">
+        <button class="btn btn-danger">Inapoi</button>
+    </a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

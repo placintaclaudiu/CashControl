@@ -50,6 +50,10 @@ body {
     border: 1px solid #fff;
 }
 
+.btn-check:focus + .btn-outline-primary {
+    outline: none;
+}
+
 /* Pentru a centra componente*/
 .child {
     margin: 0 auto;
@@ -106,3 +110,5 @@ body {
         padding-left: 0;
     }
 }
+
+
