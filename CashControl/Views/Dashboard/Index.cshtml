@@ -1,0 +1,111 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["isDashboard"] = true;
+}
+
+@* Tablou pentru venituri totale, cheltuieli, balanta si tranzactii totale*@
+
+<div class="row mb-4">
+
+    @* tablu pt balanta*@
+    <div class="col-md-3">
+        <div class="d-flex flex-row tablou sidepanel balanta">
+            <div class="d-flex flex-column justify-content-center p-5">
+                <i class="bi bi-cash-stack"></i>
+            </div>
+            <div class="d-flex flex-column m-auto py-3">
+                <span class="lead">Balanta</span>
+                <h1 class="display-6 fw-bold">@ViewBag.Balanta</h1>
+            </div>
+        </div>
+    </div>
+
+    @* tablu pt venit*@
+    <div class="col-md-3">
+        <div class="d-flex flex-row tablou sidepanel venit">
+            <div class="d-flex flex-column justify-content-center p-5">
+                <i class="bi bi-cash-stack"></i>
+            </div>
+            <div class="d-flex flex-column m-auto py-3">
+                <span class="lead">Venituri totale</span>  @* lead clasa bootstrap pentru font la text*@
+                <h1 class="display-6 fw-bold">@ViewBag.VenitTotal</h1>
+            </div>
+        </div>
+    </div>
+
+    @* tablu pt cheltuieli*@
+    <div class="col-md-3">
+        <div class="d-flex flex-row tablou sidepanel cheltuiala">
+            <div class="d-flex flex-column justify-content-center p-5">
+                <i class="bi bi-cash-stack"></i>
+            </div>
+            <div class="d-flex flex-column m-auto py-3">
+                <span class="lead">Cheltuieli totale</span>
+                <h1 class="display-6 fw-bold">@ViewBag.CheltuieliTotale</h1>
+            </div>
+        </div>
+    </div>
+    
+    @* tablu pt nr de tranzactii*@
+    <div class="col-md-3">
+        <div class="d-flex flex-row tablou sidepanel nrtranzactii">
+            <div class="d-flex flex-column justify-content-center p-5">
+                <i class="bi bi-cash-stack"></i>
+            </div>
+            <div class="d-flex flex-column m-auto py-3">
+                <span class="lead">Tranzactii totale</span>
+                <h1 class="display-6 fw-bold">@ViewBag.NumarTranzactii</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@* Donut chart si tranzactii recente*@
+
+<div class="row mb-4">
+    <div class="row mb-4">
+        <div class="tablou grafic">
+            <div class="title p-4">
+                <h5 class="fw-bold"> Cheltuieli in functie de categorie</h5>
+            </div>
+
+            <ejs-accumulationchart id="donutchart">
+
+            </ejs-accumulationchart>
+        </div>
+    </div>
+
+    <div class="row mb-8">
+        <div class="tablou grafic">
+            <div class="title p-4">
+                <h5 class="fw-bold"> Venituri & Cheltuieli </h5>
+            </div>
+
+            <ejs-chart id="spline-chart">
+
+            </ejs-chart>
+        </div>
+    </div>
+</div>
+
+@*Spline chart*@
+
+<div class="row">
+
+    <div class="row mb-8">
+        <div class="tablou">
+            <div class="title p-4">
+                <h5 class="fw-bold"> Ultimele tranzactii </h5>
+            </div>
+
+            <ejs-grid id="tranzactiirecente">
+
+            </ejs-grid>
+        </div>
+    </div>
+</div>
+
+

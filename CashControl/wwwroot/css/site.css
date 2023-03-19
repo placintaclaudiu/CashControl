@@ -111,4 +111,95 @@ body {
     }
 }
 
+/* widget */
+/* Set the border radius and background color for all elements with the class "tablou" */
+.tablou {
+    border-radius: 2rem;
+    background-color: #e5e1d8;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+}
 
+    /* Style the first child of the element with the class "sidepanel" */
+    .tablou.sidepanel > div:first-child {
+        background-color: #ccc8c0;
+        padding: 2rem;
+        border-top-left-radius: 2rem;
+        border-bottom-left-radius: 2rem;
+        border-right: 5px solid #e5e1d8; /* Add a border to the right side */
+    }
+
+        /* Make the icon inside the first child of the element with the class "sidepanel" bold */
+        .tablou.sidepanel > div:first-child i {
+            font-weight: bold;
+        }
+
+    /* Set the color and font size of the first child of the element with the class "venit" */
+    .tablou.venit > div:first-child {
+        color: green;
+        font-size: 1.2rem;
+    }
+
+    /* Set the color and font size of the first child of the element with the class "cheltuiala" */
+    .tablou.cheltuiala > div:first-child {
+        color: red;
+        font-size: 1.2rem;
+    }
+
+    /* Set the color and font size of the first child of the element with the class "balanta" */
+    .tablou.balanta > div:first-child {
+        color: blue;
+        font-size: 1.2rem;
+    }
+
+    /* Set the color and font size of the first child of the element with the class "nrtranzactii" */
+    .tablou.nrtranzactii > div:first-child {
+        color: darkorange;
+        font-size: 1.2rem;
+    }
+
+    /* Add padding and border to all elements with the class "grafic" */
+    .tablou.grafic {
+        padding: 1rem;
+        border: 5px solid #ccc8c0;
+        border-radius: 1rem;
+    }
+
+
+
+
+/*.tablou {
+    border-radius: 2rem;
+    background-color: #e5e1d8;
+}
+
+    .tablou.sidepanel > div:first-child {
+        background-color: #ccc8c0;
+        padding: 2rem;
+        border-top-left-radius: 2rem;
+        border-bottom-left-radius: 2rem;
+    }
+
+        .tablou.sidepanel > div:first-child i {
+            font-weight: bold;
+        }
+
+    .tablou.venit > div:first-child {
+        color: green;
+    }
+
+    .tablou.cheltuiala > div:first-child {
+        color: red;
+    }
+
+    .tablou.balanta > div:first-child {
+        color: blue;
+    }
+
+    .tablou.nrtranzactii > div:first-child {
+        color: darkorange;
+    }
+
+.tablou.grafic {
+    padding: 5px;
+}
+*/
