@@ -65,37 +65,37 @@
 
 @* Donut chart si tranzactii recente*@
 
+@*Donut chart*@
 <div class="row mb-4">
-    <div class="row mb-4">
+    <div class="col-md-6 mb-4">  <!-- Use col-md-6 to create a 2-column layout on medium-sized screens -->
         <div class="tablou grafic">
             <div class="title p-4">
                 <h5 class="fw-bold"> Cheltuieli in functie de categorie</h5>
             </div>
 
-            <ejs-accumulationchart id="donutchart">
+            <ejs-accumulationchart id="donutchart" background="#ccc8c0" enableSmartLabels>
+                <e-accumulation-series-collection>
+                    @* palettes=@(new string[]{"red", "blue"}) in acumulation series pt culori la donut chart*@
+                    <e-accumulation-series dataSource="@ViewBag.DonutChartData" xName="CategorieCuEmoji" yName="total" innerRadius="50%" legendShape="Diamond">
+                        <e-accumulationseries-datalabel name="formatedTotal" visible="true">
 
+                        </e-accumulationseries-datalabel>
+                    </e-accumulation-series>
+                </e-accumulation-series-collection>
+                <e-accumulationchart-legendsettings position="Top" toggleVisibility="false"> @* toggleVisibility pt a dezactiva fct de a scoate elemente din legenda*@
+                    <e-legendsettings-textstyle size="1rem">
+
+                    </e-legendsettings-textstyle>
+                </e-accumulationchart-legendsettings>
+                <e-accumulationchart-tooltipsettings enable>
+
+                </e-accumulationchart-tooltipsettings>
             </ejs-accumulationchart>
         </div>
     </div>
+                    @*Tranzactii recente*@    
 
-    <div class="row mb-8">
-        <div class="tablou grafic">
-            <div class="title p-4">
-                <h5 class="fw-bold"> Venituri & Cheltuieli </h5>
-            </div>
-
-            <ejs-chart id="spline-chart">
-
-            </ejs-chart>
-        </div>
-    </div>
-</div>
-
-@*Spline chart*@
-
-<div class="row">
-
-    <div class="row mb-8">
+    <div class="col-md-6 mb-8">
         <div class="tablou">
             <div class="title p-4">
                 <h5 class="fw-bold"> Ultimele tranzactii </h5>
@@ -107,5 +107,59 @@
         </div>
     </div>
 </div>
+  
+    
+
+@*Spline chart*@
+
+<div class="row">
+        <div class="col mb-8">
+            <div class="tablou grafic">
+                <div class="title p-4">
+                    <h5 class="fw-bold"> Venituri & Cheltuieli </h5>
+                </div>
+
+                <ejs-chart id="spline-chart" background="#ccc8c0"
+                           palettes=@(new string[]{"red", "blue"})>
+                    @*Axa x*@
+                    <e-chart-primaryxaxis valueType="Category">
+                        <e-majorgridlines width="0"></e-majorgridlines>
+                        <e-majorticklines width="0"></e-majorticklines>
+                    </e-chart-primaryxaxis>
+                    @*Axa y*@
+                    <e-chart-primaryyaxis>
+                        <e-majorgridlines width="1" color="#32414d" dashArray="3,5"></e-majorgridlines>
+                        <e-majorticklines width="0"></e-majorticklines>
+                    </e-chart-primaryyaxis>
+
+                    <e-chart-chartarea>
+                        <e-chartarea-border width="0"></e-chartarea-border>
+                    </e-chart-chartarea>
+                    <e-series-collection>
+                        @*Serie pentru venituri*@
+                        <e-series dataSource="@ViewBag.SplineChartData" xName="zi" yName="venit" name="Venit" type="@Syncfusion.EJ2.Charts.ChartSeriesType.Spline" width="4">
+
+                        </e-series>
+                        @*Serie pentru cheltuieli*@
+                        <e-series dataSource="@ViewBag.SplineChartData" xName="zi" yName="cheltuiala" name="Cheltuiala" type="@Syncfusion.EJ2.Charts.ChartSeriesType.Spline" width="4">
+
+                        </e-series>
+                    </e-series-collection>
+
+                    <e-chart-legendsettings position="Top" toggleVisibility="false" alignment="Far">
+                        @* toggleVisibility pt a dezactiva fct de a scoate elemente din legenda*@
+                        <e-legendsettings-textstyle size="1rem">
+
+                        </e-legendsettings-textstyle>
+                    </e-chart-legendsettings>
+
+                    <e-chart-tooltipsettings enable>
+
+                    </e-chart-tooltipsettings>
+                </ejs-chart>
+            </div>
+        </div>
+</div>
+
 
 
