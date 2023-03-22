@@ -96,14 +96,20 @@
                     @*Tranzactii recente*@    
 
     <div class="col-md-6 mb-8">
-        <div class="tablou">
+        <div class="tablou grafic">
             <div class="title p-4">
                 <h5 class="fw-bold"> Ultimele tranzactii </h5>
             </div>
 
-            <ejs-grid id="tranzactiirecente">
-
-            </ejs-grid>
+            <div class="px-4 pb-4">
+                <ejs-grid id="tranzactiirecente"
+                          dataSource="@ViewBag.TranzactiiRecente" gridLines="None">
+                    <e-grid-columns>
+                        <e-grid-column headerText="Categorie" field="CategorieCuEmoji"></e-grid-column>
+                        <e-grid-column headerText="Data" field="Date" type="date" format="dd-MMM-yy"></e-grid-column>
+                        <e-grid-column headerText="Total" field="SumaCorecta" textAlign="Center"></e-grid-column>
+                    </e-grid-columns>
+                </ejs-grid>
         </div>
     </div>
 </div>
@@ -128,7 +134,7 @@
                     </e-chart-primaryxaxis>
                     @*Axa y*@
                     <e-chart-primaryyaxis>
-                        <e-majorgridlines width="1" color="#32414d" dashArray="3,5"></e-majorgridlines>
+                    <e-majorgridlines width="1" dashArray="3,5" color="#32414d"></e-majorgridlines>
                         <e-majorticklines width="0"></e-majorticklines>
                     </e-chart-primaryyaxis>
 

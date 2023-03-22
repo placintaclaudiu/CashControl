@@ -68,7 +68,76 @@ body {
 
 /*Grid pentru tranzactii si categorii*/
 
+.e-grid {
+    border: 0;
+    border-radius: 5px;
+}
 
+    .e-grid .e-gridcontent, .e-grid .e-table {
+        background-color: #e5e1d8;
+    }
+
+    .e-grid .e-gridheader {
+        border: 5px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        padding: 10px;
+        background-color: #e5e1d8;
+    }
+
+        .e-grid .e-gridheader .e-headercell {
+            background-color: #e5e1d8;
+        }
+
+    .e-grid .e-gridpager {
+        background-color: #1a222b;
+    }
+
+    .e-grid .e-pagercontainer {
+        border: none;
+        background-color: #1a222b;
+    }
+
+    .e-grid .e-content table {
+        padding: 0px 10px;
+    }
+
+.e-pagercontainer .e-icons {
+    background-color: #1a222b;
+    border: none !important;
+}
+
+.e-pager .e-numericitem {
+    color: #adb5bd;
+    background-color: #1a222b;
+    padding: 15px !important;
+}
+
+    .e-pager .e-numericitem:not(.e-currentitem) {
+        border: none !important;
+    }
+
+    .e-pager .e-numericitem:hover {
+        color: #fff;
+    }
+
+    .e-pager .e-numericitem.e-currentitem {
+        color: #fff;
+        border: none !important;
+        background-color: #31373d;
+    }
+
+.e-pager div.e-icons:not(.e-disable) {
+    color: #fff;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.e-grid .e-pager {
+    padding: 10px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
 /**/
 
 /*Logo din navbar*/
@@ -112,94 +181,141 @@ body {
 }
 
 /* widget */
-/* Set the border radius and background color for all elements with the class "tablou" */
 .tablou {
     border-radius: 2rem;
     background-color: #e5e1d8;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
-    /* Style the first child of the element with the class "sidepanel" */
     .tablou.sidepanel > div:first-child {
         background-color: #ccc8c0;
         padding: 2rem;
         border-top-left-radius: 2rem;
         border-bottom-left-radius: 2rem;
-        border-right: 5px solid #e5e1d8; /* Add a border to the right side */
+        border-right: 5px solid #e5e1d8; 
     }
 
-        /* Make the icon inside the first child of the element with the class "sidepanel" bold */
         .tablou.sidepanel > div:first-child i {
             font-weight: bold;
         }
 
-    /* Set the color and font size of the first child of the element with the class "venit" */
     .tablou.venit > div:first-child {
         color: green;
         font-size: 1.2rem;
     }
 
-    /* Set the color and font size of the first child of the element with the class "cheltuiala" */
     .tablou.cheltuiala > div:first-child {
         color: red;
         font-size: 1.2rem;
     }
 
-    /* Set the color and font size of the first child of the element with the class "balanta" */
     .tablou.balanta > div:first-child {
         color: blue;
         font-size: 1.2rem;
     }
 
-    /* Set the color and font size of the first child of the element with the class "nrtranzactii" */
     .tablou.nrtranzactii > div:first-child {
         color: darkorange;
         font-size: 1.2rem;
     }
 
-    /* Add padding and border to all elements with the class "grafic" */
     .tablou.grafic {
         padding: 1rem;
         border: 5px solid #ccc8c0;
         border-radius: 1rem;
     }
 
+/* Footer */
 
-
-
-/*.tablou {
-    border-radius: 2rem;
-    background-color: #e5e1d8;
+.footer {
+    padding: 10px 0;
+    background-color: #f8f9fa;
+    text-align: center;
 }
 
-    .tablou.sidepanel > div:first-child {
-        background-color: #ccc8c0;
-        padding: 2rem;
-        border-top-left-radius: 2rem;
-        border-bottom-left-radius: 2rem;
+    .footer p {
+        margin-bottom: 0;
+        font-size: 25px;
     }
 
-        .tablou.sidepanel > div:first-child i {
-            font-weight: bold;
+    .footer nav {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .footer a {
+        margin: 0 10px;
+        color: #6c757d;
+        text-decoration: none;
+        font-size: 25px;
+        transition: color 0.3s;
+    }
+
+        .footer a:hover {
+            color: #007bff;
         }
 
-    .tablou.venit > div:first-child {
-        color: green;
-    }
-
-    .tablou.cheltuiala > div:first-child {
-        color: red;
-    }
-
-    .tablou.balanta > div:first-child {
-        color: blue;
-    }
-
-    .tablou.nrtranzactii > div:first-child {
-        color: darkorange;
-    }
-
-.tablou.grafic {
-    padding: 5px;
+.left {
+    display: flex;
+    align-items: center;
 }
-*/
+
+.social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    color: #fff;
+    margin-right: 10px;
+    transition: background-color 0.3s;
+}
+
+    .social-icon:hover {
+        background-color: #0056b3;
+        width: 40px; 
+        height: 40px;
+    }
+
+.fa-facebook, .fa-instagram {
+    font-size: 60px;
+}
+
+@media only screen and (min-width: 48em) {
+    .footer-nav a:hover,
+    .footer-nav a:focus,
+    .footer-nav a:active,
+    .footer-nav a.hilite {
+        transform: translateY(0.5rem) scaleY(1.2);
+    }
+
+    .footer-nav .nav-link {
+        padding-left: 0;
+    }
+}
+
+/* buton up to the top */
+
+.up-to-top {   
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 999; 
+}
+
+    .up-to-top button {
+        display:none;
+        background-color: #4CAF50;
+        color: white;
+        font-size: 16px;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+        border-radius: 50%;
+    }
+
+        .up-to-top button:hover {
+            background-color: #3e8e41;
+        }

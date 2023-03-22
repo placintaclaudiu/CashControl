@@ -23,6 +23,15 @@ namespace CashControl.Controllers
             return View();
         }
 
+        public IActionResult Despre()
+        {
+            return View();
+        }
+        public IActionResult TermeniConditii()
+        {
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

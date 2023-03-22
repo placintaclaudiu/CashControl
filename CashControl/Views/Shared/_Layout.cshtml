@@ -77,15 +77,49 @@
         
     </div>
 
+    @* Buton up to top*@
+    <div class="up-to-top">
+        <button id="scroll-to-top-button" onclick="scrollToTop()"><i class="bi bi-arrow-up-short"></i></button>
+    </div>
+    
+
     <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2023 - CashControl - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="left">
+                <p>&copy; 2023 - CashControl</p>
+            </div>
+            <div class="right">
+                <nav>
+                    <a href="#" class="social-icon"><i class="bi bi-facebook"></i></i></a>
+                    <a href="#" class="social-icon"><i class="bi bi-instagram"></i></a>
+                    <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy Policy</a>
+                    <a asp-area="" asp-controller="Home" asp-action="Despre">Despre</a>
+                    <a asp-area="" asp-controller="Home" asp-action="TermeniConditii">Termeni si conditii</a>
+                </nav>
+            </div>
         </div>
     </footer>
+
+    <script>
+        const scrollToTopButton = document.getElementById("scroll-to-top-button");
+        window.addEventListener("scroll", () => {
+            if (window.pageYOffset > 0) {
+                scrollToTopButton.style.display = "block";
+            } else {
+                scrollToTopButton.style.display = "none";
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+    </script>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
     <ejs-scripts></ejs-scripts>
+    
 </body>
 </html>

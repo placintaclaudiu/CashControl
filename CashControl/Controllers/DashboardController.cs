@@ -73,7 +73,7 @@ namespace CashControl.Controllers
                 .GroupBy(j => j.Date)
                 .Select(k => new SplineChartData()
                 {
-                    zi = k.First().Date.ToString("MMM-dd(ro-RO)"),
+                    zi = k.First().Date.ToString("dd-MMM(ro-RO)"),
                     venit = k.Sum(l => l.Total)             
                 })
                 .ToList();
@@ -106,6 +106,14 @@ namespace CashControl.Controllers
                                           venit = venit == null ? 0 : venit.venit, // se verifica daca venitul este null, daca da returneaza 0 daca nu returneaza venitul din tabela venit
                                           cheltuiala = cheltuiala == null ? 0 : cheltuiala.cheltuiala,
                                       };
+
+            // Tranzactii recente (ultimele tranzactii)
+
+            ViewBag.TranzactiiRecente = await _context.Transactions
+              .Include(i => i.Category)
+              .OrderByDescending(j => j.Date)
+              .Take(9)
+              .ToListAsync();
 
             return View();
         }
