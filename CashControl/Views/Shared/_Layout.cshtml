@@ -14,10 +14,11 @@
     <script src="https://cdn.syncfusion.com/ej2/20.4.48/dist/ej2.min.js"></script>
 </head>
 <body class="e-bigger">
-    <header>
+    <header> 
+        @*Nav bar*@
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"> <img class ="navbar-logo" src="~/poze/money_icon.png" /> </a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"> <img class="navbar-logo" src="~/poze/money_icon.png" /></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -52,21 +53,22 @@
                     <div class="row">
                         <div class="col-md-7">
                             <div class="d-flex flex-column mb-5">
-                                <div class="d-flex mb-1 child"> @*clasa child pt centrare*@
+                                <div class="d-flex mb-1 child">
+                                    @*clasa child pt centrare*@
                                     <div class="flex-grow-1">
                                         <h3 class="fw-bold">@ViewData["TitluPagina"]</h3>
                                     </div>
                                     <div style="position:relative; left:550px; top:2px;">
                                         @if (ViewData["CreareText"] != null)
                                         {
-                                             <a class="btn btn-success" style="color: white" href="@ViewData["CreareURL"]">
-                                            @ViewData["CreareText"]
-                                        </a>
-                                        }                                      
+                                            <a class="btn btn-success" style="color: white" href="@ViewData["CreareURL"]">
+                                                @ViewData["CreareText"]
+                                            </a>
+                                        }
                                     </div>
                                 </div>
                                 @* portiunea pentru breadcrumb*@
-                              @*  <ejs-breadcrumb id="breadcrumb"></ejs-breadcrumb>*@
+                                @*  <ejs-breadcrumb id="breadcrumb"></ejs-breadcrumb>*@
                             </div>
                         </div>
                     </div>
@@ -74,7 +76,7 @@
                 </main>
             </div>
         </div>
-        
+
     </div>
 
     @* Buton up to top*@
@@ -82,6 +84,7 @@
         <button id="scroll-to-top-button" onclick="scrollToTop()"><i class="bi bi-arrow-up-short"></i></button>
     </div>
     
+    @* Footer *@
 
     <footer class="border-top footer text-muted">
         <div class="container d-flex justify-content-between align-items-center">
@@ -92,7 +95,8 @@
                 <nav>
                     <a href="#" class="social-icon"><i class="bi bi-facebook"></i></i></a>
                     <a href="#" class="social-icon"><i class="bi bi-instagram"></i></a>
-                    <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy Policy</a>
+                    <a href="#" class="social-icon"> <i class="bi bi-github"></i></a>
+                    <a asp-area="" asp-controller="Home" asp-action="Contact">Contacteaza-ne</a>
                     <a asp-area="" asp-controller="Home" asp-action="Despre">Despre</a>
                     <a asp-area="" asp-controller="Home" asp-action="TermeniConditii">Termeni si conditii</a>
                 </nav>
