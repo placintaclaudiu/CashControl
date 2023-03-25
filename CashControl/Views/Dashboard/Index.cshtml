@@ -115,25 +115,6 @@
 
 @*Spline chart*@
 
-@*<div class="col-md-12">
-    <div class="tablou grafic">
-        <div class="p-4">
-            <h5 class="fw-bold">Venituri vs Cheltuieli</h5>    
-        </div>
-            <ejs-chart id="spline-chart" background="#ccc8c0">
-                <e-chart-primaryxaxis valueType="Category"></e-chart-primaryxaxis>
-                <e-chart-primaryyaxis></e-chart-primaryyaxis>
-                <e-series-collection>
-                    <e-series dataSource="@ViewBag.SplineChartData" xName="zi"
-                              yName="venit" name="Venit" type="@Syncfusion.EJ2.Charts.ChartSeriesType.Spline"></e-series>
-                    <e-series dataSource="@ViewBag.SplineChartData" xName="zi"
-                              yName="cheltuiala" name="Cheltuiala" type="@Syncfusion.EJ2.Charts.ChartSeriesType.Spline"></e-series>
-                </e-series-collection>
-            </ejs-chart>
-    </div>
-</div>*@
-
-
     <div class="col-md-12">
         <div class="tablou grafic">
             <div class="p-4">
@@ -173,10 +154,49 @@
             </ejs-chart>
         </div>
     </div>
-
-
-@* Bar Chart *@
    
+    
+@* Bar Chart *@
+
+    <div class="col-md-12">
+        <div class="tablou grafic">
+            <div class="p-4">
+                <h5 class="fw-bold">Balanta la sfarsitul zilei</h5>
+            </div>
+        <ejs-chart id="bar-chart" background="#ccc8c0" palettes=@(new string[]{"green", "red"})>
+            <!-- X-axis -->
+            <e-chart-primaryxaxis valueType="Category">
+                <e-majorgridlines width="0"></e-majorgridlines>
+                <e-majorticklines width="0"></e-majorticklines>
+            </e-chart-primaryxaxis>
+            <!-- Y-axis -->
+            <e-chart-primaryyaxis minimum="0" maximum="7000" interval="500">
+                <e-majorgridlines width="1" color="#32414d" dashArray="3,5"></e-majorgridlines>
+                <e-majorticklines width="0"></e-majorticklines>
+            </e-chart-primaryyaxis>
+
+            <e-chart-chartarea>
+                <e-chartarea-border width="0"></e-chartarea-border>
+            </e-chart-chartarea>
+
+            <!-- Data series -->
+            <e-series-collection>
+                    <e-series dataSource="@ViewBag.BarChartData" xName="zi" width="0.9"
+                          yName="balanta" name="Balanta" type="@Syncfusion.EJ2.Charts.ChartSeriesType.Column"></e-series>
+            </e-series-collection>
+
+            <!-- Legend settings -->
+            <e-chart-legendsettings position="Top" alignment="Far">
+                <e-legendsettings-textstyle color="black" size="1rem"></e-legendsettings-textstyle>
+            </e-chart-legendsettings>
+
+            <!-- Tooltip settings -->
+            <e-chart-tooltipsettings enable shared></e-chart-tooltipsettings>
+        </ejs-chart>
+    </div>
+</div>
+
+
 
 
 

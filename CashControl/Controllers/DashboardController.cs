@@ -116,17 +116,28 @@ namespace CashControl.Controllers
               .ToListAsync();
 
 
-            //Bar chart -> Rezumat venituri si cheltuieli
-            //ViewBag.BarChartData = SelectedTransactions
-            //    .Where(i => i.Category.Type == "Venit" || i.Category.Type == "Cheltuiala")
-            //    .GroupBy(j => j.Date)
-            //    .Select(k => new
-            //    {
-            //        zi = k.First().Date.ToString("dd-MMM"),
-            //        venit = k.Where(i => i.Category.Type == "Venit").Sum(l => l.Total),
-            //        cheltuiala = k.Where(i => i.Category.Type == "Cheltuiala").Sum(l => l.Total),
-            //    })
-            //    .ToList();
+            // Bar chart -> Rezumat balanta
+
+            List<BarChartData> RezumatBalanta = SelectedTransactions
+                .GroupBy(j => j.Date)
+                .Select(k => new BarChartData()
+                {
+                    zi = k.First().Date.ToString("dd-MMM", new CultureInfo("ro-RO")),
+                    balanta = k.Sum(l => l.Category.Type == "Venit" ? l.Total : -l.Total)
+                })
+                .OrderBy(m => m.zi)
+                .ToList();
+
+            ViewBag.BarChartData = from zi in Ultimele7Zile
+                                   join balanta in RezumatBalanta on zi equals balanta.zi
+                                   into BalantaZilnica
+                                   from balanta in BalantaZilnica.DefaultIfEmpty()
+                                   select new
+                                   {
+                                       zi = zi,
+                                       balanta = balanta == null ? 0 : balanta.balanta,
+                                   };
+
 
             return View();
         }
@@ -137,5 +148,11 @@ namespace CashControl.Controllers
         public string zi;
         public int venit;
         public int cheltuiala;
+    }
+
+    public class BarChartData
+    {
+        public string zi;
+        public int balanta;
     }
 }
