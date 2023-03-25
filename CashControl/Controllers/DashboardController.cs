@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Syncfusion.EJ2.Inputs;
 using System.Globalization;
 
+
 namespace CashControl.Controllers
 {
     public class DashboardController : Controller
@@ -73,10 +74,9 @@ namespace CashControl.Controllers
                 .GroupBy(j => j.Date)
                 .Select(k => new SplineChartData()
                 {
-                    zi = k.First().Date.ToString("dd-MMM(ro-RO)"),
-                    venit = k.Sum(l => l.Total)             
-                })
-                .ToList();
+                    zi = k.First().Date.ToString("dd-MMM", new CultureInfo("ro-RO")),
+                    venit = k.Sum(l => l.Total)
+                }).ToList();
 
             //Cheltuiala
             List<SplineChartData> RezumatCheltuieli = SelectedTransactions
@@ -84,26 +84,26 @@ namespace CashControl.Controllers
                 .GroupBy(j => j.Date)
                 .Select(k => new SplineChartData()
                 {
-                    zi = k.First().Date.ToString("dd-MMM(ro-RO)"), // Modificare culturalizare
+                    zi = k.First().Date.ToString("dd-MMM", new CultureInfo("ro-RO")),
                     cheltuiala = k.Sum(l => l.Total)
-                })
-                .ToList();
+                }).ToList();
 
-            //Concatenare venituri si cheltuieli
+            //Venituri si cheltuieli combinate
 
-            string[] Ultimele7Zile = Enumerable.Range(0, 7)   //// Pt a nu sari peste zile unde nu se realizeaza nici o tranzactie
-                .Select(i => DataInceput.AddDays(i).ToString("dd-MMM"))
+            string[] Ultimele7Zile = Enumerable.Range(0, 7)
+                .Select(i => DataInceput.AddDays(i).ToString("dd-MMM", new CultureInfo("ro-RO")))
                 .ToArray();
 
             ViewBag.SplineChartData = from zi in Ultimele7Zile
-                                      join venit in RezumatVenituri on zi equals venit.zi into VenitZilnic
-                                      from venit in VenitZilnic.DefaultIfEmpty()       // Se foloseste left join pentru ca nu vrem sa se pastreze doar elementele care satisfac conditia
+                                      join venit in RezumatVenituri on zi equals venit.zi
+                                      into VenitZilnic
+                                      from venit in VenitZilnic.DefaultIfEmpty()
                                       join cheltuiala in RezumatCheltuieli on zi equals cheltuiala.zi into CheltuialaZilnica
                                       from cheltuiala in CheltuialaZilnica.DefaultIfEmpty()
                                       select new
                                       {
-                                          zi = zi,
-                                          venit = venit == null ? 0 : venit.venit, // se verifica daca venitul este null, daca da returneaza 0 daca nu returneaza venitul din tabela venit
+                                          zi = zi, //sau cheltuiala.zi imi dadea automat
+                                          venit = venit == null ? 0 : venit.venit,
                                           cheltuiala = cheltuiala == null ? 0 : cheltuiala.cheltuiala,
                                       };
 
@@ -115,11 +115,25 @@ namespace CashControl.Controllers
               .Take(9)
               .ToListAsync();
 
+
+            //Bar chart -> Rezumat venituri si cheltuieli
+            //ViewBag.BarChartData = SelectedTransactions
+            //    .Where(i => i.Category.Type == "Venit" || i.Category.Type == "Cheltuiala")
+            //    .GroupBy(j => j.Date)
+            //    .Select(k => new
+            //    {
+            //        zi = k.First().Date.ToString("dd-MMM"),
+            //        venit = k.Where(i => i.Category.Type == "Venit").Sum(l => l.Total),
+            //        cheltuiala = k.Where(i => i.Category.Type == "Cheltuiala").Sum(l => l.Total),
+            //    })
+            //    .ToList();
+
             return View();
         }
     }
 
-    public class SplineChartData{
+    public class SplineChartData
+    {
         public string zi;
         public int venit;
         public int cheltuiala;

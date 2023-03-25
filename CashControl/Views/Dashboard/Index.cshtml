@@ -1,7 +1,4 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
     ViewData["isDashboard"] = true;
 }
 
@@ -118,54 +115,69 @@
 
 @*Spline chart*@
 
-<div class="row">
-        <div class="col mb-8">
-            <div class="tablou grafic">
-                <div class="title p-4">
-                    <h5 class="fw-bold"> Venituri & Cheltuieli </h5>
-                </div>
-
-                <ejs-chart id="spline-chart" background="#ccc8c0"
-                           palettes=@(new string[]{"red", "blue"})>
-                    @*Axa x*@
-                    <e-chart-primaryxaxis valueType="Category">
-                        <e-majorgridlines width="0"></e-majorgridlines>
-                        <e-majorticklines width="0"></e-majorticklines>
-                    </e-chart-primaryxaxis>
-                    @*Axa y*@
-                    <e-chart-primaryyaxis>
-                    <e-majorgridlines width="1" dashArray="3,5" color="#32414d"></e-majorgridlines>
-                        <e-majorticklines width="0"></e-majorticklines>
-                    </e-chart-primaryyaxis>
-
-                    <e-chart-chartarea>
-                        <e-chartarea-border width="0"></e-chartarea-border>
-                    </e-chart-chartarea>
-                    <e-series-collection>
-                        @*Serie pentru venituri*@
-                        <e-series dataSource="@ViewBag.SplineChartData" xName="zi" yName="venit" name="Venit" type="@Syncfusion.EJ2.Charts.ChartSeriesType.Spline" width="4">
-
-                        </e-series>
-                        @*Serie pentru cheltuieli*@
-                        <e-series dataSource="@ViewBag.SplineChartData" xName="zi" yName="cheltuiala" name="Cheltuiala" type="@Syncfusion.EJ2.Charts.ChartSeriesType.Spline" width="4">
-
-                        </e-series>
-                    </e-series-collection>
-
-                    <e-chart-legendsettings position="Top" toggleVisibility="false" alignment="Far">
-                        @* toggleVisibility pt a dezactiva fct de a scoate elemente din legenda*@
-                        <e-legendsettings-textstyle size="1rem">
-
-                        </e-legendsettings-textstyle>
-                    </e-chart-legendsettings>
-
-                    <e-chart-tooltipsettings enable>
-
-                    </e-chart-tooltipsettings>
-                </ejs-chart>
-            </div>
+@*<div class="col-md-12">
+    <div class="tablou grafic">
+        <div class="p-4">
+            <h5 class="fw-bold">Venituri vs Cheltuieli</h5>    
         </div>
-</div>
+            <ejs-chart id="spline-chart" background="#ccc8c0">
+                <e-chart-primaryxaxis valueType="Category"></e-chart-primaryxaxis>
+                <e-chart-primaryyaxis></e-chart-primaryyaxis>
+                <e-series-collection>
+                    <e-series dataSource="@ViewBag.SplineChartData" xName="zi"
+                              yName="venit" name="Venit" type="@Syncfusion.EJ2.Charts.ChartSeriesType.Spline"></e-series>
+                    <e-series dataSource="@ViewBag.SplineChartData" xName="zi"
+                              yName="cheltuiala" name="Cheltuiala" type="@Syncfusion.EJ2.Charts.ChartSeriesType.Spline"></e-series>
+                </e-series-collection>
+            </ejs-chart>
+    </div>
+</div>*@
+
+
+    <div class="col-md-12">
+        <div class="tablou grafic">
+            <div class="p-4">
+                <h5 class="fw-bold">Venituri vs Cheltuieli</h5>
+            </div>
+            <ejs-chart id="spline-chart" background="#ccc8c0" palettes=@(new string[]{"green", "red"})>
+                @*Axa OX*@
+                <e-chart-primaryxaxis valueType="Category">
+                    <e-majorgridlines width="0"></e-majorgridlines>
+                    <e-majorticklines width="0"></e-majorticklines>
+                </e-chart-primaryxaxis>
+                @*Axa OY*@
+                <e-chart-primaryyaxis minimum="-1000" maximum="7000" interval="1000">
+                    <e-majorgridlines width="1" color="#32414d" dashArray="3,5"></e-majorgridlines>
+                    <e-majorticklines width="0"></e-majorticklines>
+                    <e-linestyle width="0"></e-linestyle> @* Seteaza sa nu se mai vada axa oy*@
+                </e-chart-primaryyaxis>
+
+                <e-chart-chartarea>
+                    <e-chartarea-border width="0"></e-chartarea-border>
+                </e-chart-chartarea>
+                @* Colectia de serii *@
+                <e-series-collection>
+                    @*Serie pentru venituri*@
+                    <e-series dataSource="@ViewBag.SplineChartData" xName="zi" width="3"
+                              yName="venit" name="Venit" type="@Syncfusion.EJ2.Charts.ChartSeriesType.Spline"></e-series>
+                    @*Serie pentru cheltuieli*@
+                    <e-series dataSource="@ViewBag.SplineChartData" xName="zi" width="3"
+                              yName="cheltuiala" name="Cheltuiala" type="@Syncfusion.EJ2.Charts.ChartSeriesType.Spline"></e-series>
+                </e-series-collection>
+
+                <e-chart-legendsettings position="Top" alignment=Far>
+                    <e-legendsettings-textstyle color="black" size="1rem"></e-legendsettings-textstyle>
+                </e-chart-legendsettings>
+
+                  <e-chart-tooltipsettings enable shared></e-chart-tooltipsettings>
+            </ejs-chart>
+        </div>
+    </div>
+
+
+@* Bar Chart *@
+   
 
 
 
+    

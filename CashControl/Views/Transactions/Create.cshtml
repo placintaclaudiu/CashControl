@@ -31,13 +31,13 @@
                @* <label asp-for="Total" class="control-label"></label>
                 <input asp-for="Total" class="form-control" />*@
                 <ejs-numerictextbox id="total" ejs-for="Total" placeholder="Total" floatLabelType="Auto"
-                min=0 format="c2"></ejs-numerictextbox>
+                min=0 format="c0"></ejs-numerictextbox>
                 <span asp-validation-for="Total" class="text-danger fs-5"></span>
             </div>
             <div class="mb-3">
                 @*<label asp-for="Date" class="control-label"></label>
                 <input asp-for="Date" class="form-control" />*@
-                <ejs-datepicker id="date" ejs-for="Date" placeholder="Date" floatLabelType="Always" format="dd/MMM/yy"></ejs-datepicker>
+                <ejs-datepicker id="date" ejs-for="Date" placeholder="Date" floatLabelType="Always" format="dd/MMM/yy" locale="ro"></ejs-datepicker>
                @* <span asp-validation-for="Date" class="text-danger fs-5"></span>*@
             </div>
             <div class="mb-3">

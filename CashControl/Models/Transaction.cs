@@ -36,7 +36,7 @@ namespace CashControl.Models
         public string? SumaCorecta {
             get
             {
-                return ((Category == null || Category.Type == "Cheltuiala") ? "- " : "+ ") + Total.ToString("C2");
+                return ((Category == null || Category.Type == "Cheltuiala") ? "- " : "+ ") + Total.ToString("C0");
             }
         }
     }
