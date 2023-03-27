@@ -102,7 +102,7 @@ namespace CashControl.Controllers
                                       from cheltuiala in CheltuialaZilnica.DefaultIfEmpty()
                                       select new
                                       {
-                                          zi = zi, //sau cheltuiala.zi imi dadea automat
+                                          zi = zi,
                                           venit = venit == null ? 0 : venit.venit,
                                           cheltuiala = cheltuiala == null ? 0 : cheltuiala.cheltuiala,
                                       };
@@ -137,7 +137,6 @@ namespace CashControl.Controllers
                                        zi = zi,
                                        balanta = balanta == null ? 0 : balanta.balanta,
                                    };
-
 
             return View();
         }

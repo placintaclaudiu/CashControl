@@ -2,11 +2,11 @@
     ViewData["isDashboard"] = true;
 }
 
-@* Tablou pentru venituri totale, cheltuieli, balanta si tranzactii totale*@
+@*Tablou pentru venituri totale, cheltuieli, balanta si tranzactii totale*@
 
 <div class="row mb-4">
 
-    @* tablu pt balanta*@
+    @*Tablou pentru balanta*@
     <div class="col-md-3">
         <div class="d-flex flex-row tablou sidepanel balanta">
             <div class="d-flex flex-column justify-content-center p-5">
@@ -19,7 +19,7 @@
         </div>
     </div>
 
-    @* tablu pt venit*@
+    @*Tablou pentru venituri totale*@
     <div class="col-md-3">
         <div class="d-flex flex-row tablou sidepanel venit">
             <div class="d-flex flex-column justify-content-center p-5">
@@ -32,7 +32,7 @@
         </div>
     </div>
 
-    @* tablu pt cheltuieli*@
+    @*Tablou pentru cheltuieli totale*@
     <div class="col-md-3">
         <div class="d-flex flex-row tablou sidepanel cheltuiala">
             <div class="d-flex flex-column justify-content-center p-5">
@@ -45,7 +45,7 @@
         </div>
     </div>
     
-    @* tablu pt nr de tranzactii*@
+    @*Tablou pentru numarul total de tranzactii*@
     <div class="col-md-3">
         <div class="d-flex flex-row tablou sidepanel nrtranzactii">
             <div class="d-flex flex-column justify-content-center p-5">
@@ -60,17 +60,19 @@
 </div>
 
 
-@* Donut chart si tranzactii recente*@
+
+@*Donut chart si Conversie valutara*@
+
+<div class="row mb-4">
 
 @*Donut chart*@
-<div class="row mb-4">
-    <div class="col-md-6 mb-4">  <!-- Use col-md-6 to create a 2-column layout on medium-sized screens -->
-        <div class="tablou grafic">
+    <div class="col-md-6 mb-4 d-flex align-items-stretch">
+        <div class="tablou grafic w-100">
             <div class="title p-4">
                 <h5 class="fw-bold"> Cheltuieli in functie de categorie</h5>
             </div>
 
-            <ejs-accumulationchart id="donutchart" background="#ccc8c0" enableSmartLabels>
+            <ejs-accumulationchart id="donutchart" background="#ccc8c0" enableSmartLabels enableAnimation="true">
                 <e-accumulation-series-collection>
                     @* palettes=@(new string[]{"red", "blue"}) in acumulation series pt culori la donut chart*@
                     <e-accumulation-series dataSource="@ViewBag.DonutChartData" xName="CategorieCuEmoji" yName="total" innerRadius="50%" legendShape="Diamond">
@@ -79,43 +81,70 @@
                         </e-accumulationseries-datalabel>
                     </e-accumulation-series>
                 </e-accumulation-series-collection>
+                
                 <e-accumulationchart-legendsettings position="Top" toggleVisibility="false"> @* toggleVisibility pt a dezactiva fct de a scoate elemente din legenda*@
-                    <e-legendsettings-textstyle size="1rem">
-
-                    </e-legendsettings-textstyle>
+                    <e-legendsettings-textstyle size="1rem"></e-legendsettings-textstyle>
                 </e-accumulationchart-legendsettings>
-                <e-accumulationchart-tooltipsettings enable>
-
-                </e-accumulationchart-tooltipsettings>
+                <e-accumulationchart-tooltipsettings enable></e-accumulationchart-tooltipsettings>
             </ejs-accumulationchart>
+
         </div>
     </div>
-                    @*Tranzactii recente*@    
 
-    <div class="col-md-6 mb-8">
-        <div class="tablou grafic">
-            <div class="title p-4">
-                <h5 class="fw-bold"> Ultimele tranzactii </h5>
+@*Conversie valutara*@
+    <div class="col-md-6 mb-4 d-flex align-items-stretch">
+    <div class="tablou grafic w-100">
+        <div class="title p-4">
+            <h5 class="fw-bold">Conversie valutara</h5>
+        </div>
+
+        <div class="currency-converter-container" id="currency-converter">
+                <div class="form-group mb-4">
+                <label for="from-currency">Din valuta:</label>
+                <select class="form-control" id="from-currency">
+                    <option value="RON">Leu romanesc (RON)</option>
+                    <option value="USD">Dolar American (USD)</option>
+                    <option value="GBP">Lira sterlina (GBP)</option>
+                    <option value="EUR">Euro (EUR)</option>
+                    <option value="CHF">Franc elvetian (CHF)</option>
+                </select>
             </div>
-
-            <div class="px-4 pb-4">
-                <ejs-grid id="tranzactiirecente"
-                          dataSource="@ViewBag.TranzactiiRecente" gridLines="None">
-                    <e-grid-columns>
-                        <e-grid-column headerText="Categorie" field="CategorieCuEmoji"></e-grid-column>
-                        <e-grid-column headerText="Data" field="Date" type="date" format="dd-MMM-yy"></e-grid-column>
-                        <e-grid-column headerText="Total" field="SumaCorecta" textAlign="Center"></e-grid-column>
-                    </e-grid-columns>
-                </ejs-grid>
+                <div class="form-group mb-4">
+                <label for="to-currency">In valuta:</label>
+                <select class="form-control" id="to-currency">
+                    <option value="RON">Leu romanesc (RON)</option>
+                    <option value="USD">Dolar American (USD)</option>
+                    <option value="GBP">Lira sterlina (GBP)</option>
+                    <option value="EUR">Euro (EUR)</option>
+                    <option value="CHF">Franc elvetian (CHF)</option>
+                </select>
+            </div>
+                <div class="form-group mb-3">
+                <label for="amount">Suma:</label>
+                <div class="input-group">
+                        <div class="input-group">
+                            <input type="number" id="amount" value="1" class="form-control">
+                            <div class="input-group-append">
+                                <span class="input-group-text" id="currency-prefix">RON</span>
+                            </div>
+                        </div>
+                </div>
+            </div>
+            <button class="currency-converter button btn btn-success" id="convert">Conversie</button>
+            <p id="result"></p>
         </div>
     </div>
 </div>
-  
-    
+
+</div>
+
+@*Spline chart & Bar Chart*@
+
+<div class="row mb-4">
 
 @*Spline chart*@
 
-    <div class="col-md-12">
+    <div class="col-md-6 mb-4">
         <div class="tablou grafic">
             <div class="p-4">
                 <h5 class="fw-bold">Venituri vs Cheltuieli</h5>
@@ -150,54 +179,123 @@
                     <e-legendsettings-textstyle color="black" size="1rem"></e-legendsettings-textstyle>
                 </e-chart-legendsettings>
 
-                  <e-chart-tooltipsettings enable shared></e-chart-tooltipsettings>
+                <e-chart-tooltipsettings enable shared></e-chart-tooltipsettings>
             </ejs-chart>
         </div>
     </div>
-   
-    
-@* Bar Chart *@
 
-    <div class="col-md-12">
+@*Bar Chart*@
+
+    <div class="col-md-6 mb-4">
         <div class="tablou grafic">
             <div class="p-4">
                 <h5 class="fw-bold">Balanta la sfarsitul zilei</h5>
             </div>
-        <ejs-chart id="bar-chart" background="#ccc8c0" palettes=@(new string[]{"green", "red"})>
-            <!-- X-axis -->
-            <e-chart-primaryxaxis valueType="Category">
-                <e-majorgridlines width="0"></e-majorgridlines>
-                <e-majorticklines width="0"></e-majorticklines>
-            </e-chart-primaryxaxis>
-            <!-- Y-axis -->
-            <e-chart-primaryyaxis minimum="0" maximum="7000" interval="500">
-                <e-majorgridlines width="1" color="#32414d" dashArray="3,5"></e-majorgridlines>
-                <e-majorticklines width="0"></e-majorticklines>
-            </e-chart-primaryyaxis>
+            <ejs-chart id="bar-chart" background="#ccc8c0" palettes=@(new string[]{"green", "red"})>
+                <!-- X-axis -->
+                <e-chart-primaryxaxis valueType="Category">
+                    <e-majorgridlines width="0"></e-majorgridlines>
+                    <e-majorticklines width="0"></e-majorticklines>
+                </e-chart-primaryxaxis>
+                <!-- Y-axis -->
+                <e-chart-primaryyaxis minimum="-2500" maximum="7000" interval="500">
+                    <e-majorgridlines width="1" color="#32414d" dashArray="3,5"></e-majorgridlines>
+                    <e-majorticklines width="0"></e-majorticklines>
+                </e-chart-primaryyaxis>
 
-            <e-chart-chartarea>
-                <e-chartarea-border width="0"></e-chartarea-border>
-            </e-chart-chartarea>
+                <e-chart-chartarea>
+                    <e-chartarea-border width="0"></e-chartarea-border>
+                </e-chart-chartarea>
 
-            <!-- Data series -->
-            <e-series-collection>
+                <!-- Data series -->
+                <e-series-collection>
                     <e-series dataSource="@ViewBag.BarChartData" xName="zi" width="0.9"
-                          yName="balanta" name="Balanta" type="@Syncfusion.EJ2.Charts.ChartSeriesType.Column"></e-series>
-            </e-series-collection>
+                              yName="balanta" name="Balanta" type="@Syncfusion.EJ2.Charts.ChartSeriesType.Column"></e-series>
+                </e-series-collection>
 
-            <!-- Legend settings -->
-            <e-chart-legendsettings position="Top" alignment="Far">
-                <e-legendsettings-textstyle color="black" size="1rem"></e-legendsettings-textstyle>
-            </e-chart-legendsettings>
+                <!-- Legend settings -->
+                <e-chart-legendsettings position="Top" alignment="Far">
+                    <e-legendsettings-textstyle color="black" size="1rem"></e-legendsettings-textstyle>
+                </e-chart-legendsettings>
 
-            <!-- Tooltip settings -->
-            <e-chart-tooltipsettings enable shared></e-chart-tooltipsettings>
-        </ejs-chart>
+                <!-- Tooltip settings -->
+                <e-chart-tooltipsettings enable shared></e-chart-tooltipsettings>
+            </ejs-chart>
+        </div>
     </div>
 </div>
 
+@*Tranzactii recente*@
 
+<div class="row mb-4">
+    <div class="col-md-12 mb-4">
+        <div class="tablou grafic">
+            <div class="title p-4">
+                <h5 class="fw-bold"> Ultimele tranzactii </h5>
+            </div>
 
+            <div class="px-4 pb-4">
+                <ejs-grid id="tranzactiirecente"
+                          dataSource="@ViewBag.TranzactiiRecente" gridLines="None">
+                    <e-grid-columns>
+                        <e-grid-column headerText="Data" field="Date" type="date" format="dd-MMM-yy"></e-grid-column>
+                        <e-grid-column headerText="Categorie" field="CategorieCuEmoji"></e-grid-column>
+                        <e-grid-column headerText="Descriere" field="Description" textAlign="Left"></e-grid-column>
+                        <e-grid-column headerText="Total" field="SumaCorecta" textAlign="Center"></e-grid-column>
+                    </e-grid-columns>
+                </ejs-grid>
+            </div>
+        </div>
+    </div>
+</div>
+   
 
+@*Script pentru conversia valutara*@
 
-    
+<script>
+    const API_KEY = 'b43c0b9ea6d38b7ad7ef5e53'; // cheie API
+    const convertButton = document.querySelector('#convert');
+    const resultElement = document.querySelector('#result');
+
+    convertButton.addEventListener('click', () => {
+        const fromCurrency = document.querySelector('#from-currency').value;
+        const toCurrency = document.querySelector('#to-currency').value;
+        const amount = document.querySelector('#amount').value;
+
+        // construim URL-ul pt API
+        const apiUrl = `https://v6.exchangerate-api.com/v6/${API_KEY}/pair/${fromCurrency}/${toCurrency}/${amount}`;
+
+    // se preiau datele cursului de schimb din API (facem fetch)
+    fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+      // se afiseaza rezultatul userului
+        const convertedAmount = data.conversion_result.toFixed(2);
+        resultElement.textContent = `${amount} ${fromCurrency} = ${convertedAmount} ${toCurrency}`;
+    })
+    .catch(error => {
+      // mesaj de eroare in caz ca nu merge
+       resultElement.textContent = 'Eroare la conversia monedei. Vă rugăm să încercați din nou mai târziu.';
+    });
+});
+</script>
+
+@*Script pentru a updata prefixul in input box automat bazat pe ce este selectat*@
+<script>
+    const amountInput = document.getElementById('amount');
+    const currencyPrefix = document.getElementById('currency-prefix');
+    const fromCurrencyDropdown = document.getElementById('from-currency');
+    const toCurrencyDropdown = document.getElementById('to-currency');
+
+    function updateCurrencyPrefix() {
+        const fromCurrency = fromCurrencyDropdown.value;
+        const toCurrency = toCurrencyDropdown.value;
+
+        // Update the currency prefix based on the selected currencies
+        currencyPrefix.textContent = fromCurrency === 'RON' ? toCurrency : fromCurrency;
+    }
+
+    // Add event listeners to update the currency prefix whenever the dropdown values change
+    fromCurrencyDropdown.addEventListener('change', updateCurrencyPrefix);
+    toCurrencyDropdown.addEventListener('change', updateCurrencyPrefix);
+</script>
