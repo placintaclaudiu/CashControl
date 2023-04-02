@@ -72,10 +72,12 @@
                 <h5 class="fw-bold"> Cheltuieli in functie de categorie</h5>
             </div>
 
-            <ejs-accumulationchart id="donutchart" background="#ccc8c0" enableSmartLabels enableAnimation="true">
+            <ejs-accumulationchart id="donutchart" background="#bad6de" enableSmartLabels enableAnimation="true">   @*background="#bad6de"*@
                 <e-accumulation-series-collection>
-                    @* palettes=@(new string[]{"red", "blue"}) in acumulation series pt culori la donut chart*@
-                    <e-accumulation-series dataSource="@ViewBag.DonutChartData" xName="CategorieCuEmoji" yName="total" innerRadius="50%" legendShape="Diamond">
+                   
+                    @*in acumulation series pt culori la donut chart*@
+                    <e-accumulation-series dataSource="@ViewBag.DonutChartData" xName="CategorieCuEmoji" yName="total" innerRadius="50%" legendShape="Diamond"
+                                           palettes=@(new string[]{"#FF6384", "#36A2EB", "#FFCE56", "#33CCCC", "#CC99FF", "#FF9933", "#6699CC", "#FF6666", "#99CC33", "#CC6600"})>
                         <e-accumulationseries-datalabel name="formatedTotal" visible="true">
 
                         </e-accumulationseries-datalabel>
@@ -149,7 +151,7 @@
             <div class="p-4">
                 <h5 class="fw-bold">Venituri vs Cheltuieli</h5>
             </div>
-            <ejs-chart id="spline-chart" background="#ccc8c0" palettes=@(new string[]{"green", "red"})>
+            <ejs-chart id="spline-chart" background="#bad6de" palettes=@(new string[]{"green", "red"})>
                 @*Axa OX*@
                 <e-chart-primaryxaxis valueType="Category">
                     <e-majorgridlines width="0"></e-majorgridlines>
@@ -191,7 +193,7 @@
             <div class="p-4">
                 <h5 class="fw-bold">Balanta la sfarsitul zilei</h5>
             </div>
-            <ejs-chart id="bar-chart" background="#ccc8c0" palettes=@(new string[]{"green", "red"})>
+            <ejs-chart id="bar-chart" background="#bad6de" palettes=@(new string[]{"green", "red"})>
                 <!-- X-axis -->
                 <e-chart-primaryxaxis valueType="Category">
                     <e-majorgridlines width="0"></e-majorgridlines>
