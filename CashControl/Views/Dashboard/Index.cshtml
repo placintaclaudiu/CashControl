@@ -1,6 +1,38 @@
-﻿@{
+﻿@using Syncfusion.EJ2;
+@{
     ViewData["isDashboard"] = true;
 }
+
+@*<head>
+    <link href="https://cdn.syncfusion.com/ej2/material.css" rel="stylesheet">
+    <script src="https://cdn.syncfusion.com/ej2/dist/ej2.min.js"></script>
+</head>*@
+
+@*Date range picker*@
+
+<div class="row mb-4">
+    <div class="daterangepicker-container" style="text-align: right;">
+        <ejs-daterangepicker id="daterangepicker" format="dd/MM/yyyy" placeholder="Selecteaza data"></ejs-daterangepicker>
+  </div>
+</div>
+
+@*<div class="row mb-4">
+    <div class="daterangepicker-container" style="text-align: right;">
+        @Html.EJS().DateRangePicker("daterangepicker").Placeholder("Selecteaza data").Format("dd/MM/yyyy").ApplyButton("Aplica").Presets(preset).OpenOnFocus(true).OnChange("onDateRangeSelected").Render()
+
+        <script>
+            var onDateRangeSelected = function (args) {
+                var startDate = args.startDate;
+                var endDate = args.endDate;
+
+                window.location.href = '@Url.Action("Index", "Dashboard")?startDate=' + startDate.toISOString() + '&endDate=' + endDate.toISOString();
+            };
+        </script>
+    </div>
+</div>*@
+
+
+
 
 @*Tablou pentru venituri totale, cheltuieli, balanta si tranzactii totale*@
 
@@ -301,3 +333,27 @@
     fromCurrencyDropdown.addEventListener('change', updateCurrencyPrefix);
     toCurrencyDropdown.addEventListener('change', updateCurrencyPrefix);
 </script>
+
+
+<script>
+    const form = document.getElementById("date-range-form");
+
+    form.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        const startDate = document.getElementById("start-date").value;
+        const endDate = document.getElementById("end-date").value;
+        const dateRange = `${startDate} - ${endDate}`;
+        document.getElementById("date-range").value = dateRange;
+
+        fetch(`/api/data?start_date=${startDate}&end_date=${endDate}`)
+            .then((response) => response.json())
+            .then((data) => {
+                // display data in your web page using the controller functions
+            })
+            .catch((error) => console.error(error));
+    });
+
+</script>
+
+ 
