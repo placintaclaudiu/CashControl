@@ -4,39 +4,121 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<head>
+    <style>
+        .transaction-section {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 20px;
+        }
 
-<div>
-    <h4>Transaction</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Category)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Category.CategoryID)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Total)
-        </dt>
-        <dd class = "col-sm-10">
+        .transaction-heading {
+            margin-top: 0;
+            font-size: 20px;
+        }
+
+        .transaction-line {
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+
+        .transaction-label {
+            font-weight: bold;
+        }
+
+        .transaction-value {
+            margin-bottom: 10px;
+        }
+
+    </style>
+</head>
+
+<div class="d-flex justify-content-center align-items-center">
+    <div class="transaction-section mb-3 child" style="max-width: 400px;">
+        <div>
+            <h4>Detalii tranzactie</h4>
+            <hr>
+        </div>
+        <div class="transaction-details row">
+            <div class="transaction-label col-5 d-flex justify-content-end">
+                <strong>Categorie:</strong>
+            </div>
+            <div class="transaction-value col-7">
+                @Html.DisplayFor(model => model.Category.DeunumireCuEmoji)
+            </div>
+            <div class="transaction-label col-5 d-flex justify-content-end">
+                <strong>Total:</strong>
+            </div>
+            <div class="transaction-value col-7">
+                @Html.DisplayFor(model => model.Total)
+            </div>
+            <div class="transaction-label col-5 d-flex justify-content-end">
+                <strong>Descriere:</strong>
+            </div>
+            <div class="transaction-value col-7">
+                @Html.DisplayFor(model => model.Description)
+            </div>
+            <div class="transaction-label col-5 d-flex justify-content-end">
+                <strong>Data:</strong>
+            </div>
+            <div class="transaction-value col-7">
+                @Model.Date.ToString("dd/MM/yyyy")
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="d-flex justify-content-center align-items-center">
+    <div class="child">
+        <a asp-action="Index">
+            <button class="btn btn-danger">&laquo; Inapoi</button>
+        </a>
+        <a asp-action="Edit" asp-route-id="@Model?.TransactionID">
+            <button class="btn btn-warning">Editeaza</button>
+        </a>
+    </div>
+</div>
+
+
+
+@*<div class="transaction-section mb-3">
+  <h4 class="transaction-heading">Tranzactie</h4>
+  <hr class="transaction-line" />
+  <dl class="transaction-details row">
+    <dt class="transaction-label col-sm-2">
+      Categorie:
+    </dt>
+    <dd class="transaction-value col-sm-10">
+            @Html.DisplayFor(model => model.Category.DeunumireCuEmoji)
+    </dd>
+    <dt class="transaction-label col-sm-2">
+      Total:
+    </dt>
+    <dd class="transaction-value col-sm-10">
             @Html.DisplayFor(model => model.Total)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class = "col-sm-10">
+    </dd>
+    <dt class="transaction-label col-sm-2">
+      Descriere:
+    </dt>
+    <dd class="transaction-value col-sm-10">
             @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Date)
-        </dt>
-        <dd class = "col-sm-10">
+    </dd>
+    <dt class="transaction-label col-sm-2">
+      Data:
+    </dt>
+    <dd class="transaction-value col-sm-10">
             @Html.DisplayFor(model => model.Date)
-        </dd>
-    </dl>
+    </dd>
+  </dl>
+</div>*@
+@*
+<div class="child">
+    <a asp-action="Index">
+        <button class="btn btn-danger">&laquo; Inapoi</button>
+    </a>
+    <a asp-action="Edit" asp-route-id="@Model?.TransactionID">
+        <button class="btn btn-warning">Editeaza</button>
+    </a>   
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.TransactionID">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+*@

@@ -3,46 +3,26 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.SqlServer.Server;
 using Syncfusion.EJ2.Inputs;
+using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 
 
 namespace CashControl.Controllers
 {
+
     public class DashboardController : Controller
     {
-
         private readonly ApplicationDbContext _context;
         public DashboardController(ApplicationDbContext context) { 
                 _context= context;
         }
-        public async Task<ActionResult> Index(DateTime? startDate, DateTime? endDate)
+
+        public async Task<ActionResult> Index()
         {
-            //DateTime startDateValue;
-            //DateTime endDateValue;
-
-            //if (startDate == null || endDate == null)
-            //{
-            //    startDateValue = DateTime.Today.AddDays(-6);
-            //    endDateValue = DateTime.Today;
-            //}
-            //else
-            //{
-            //    startDateValue = startDate.Value;
-            //    endDateValue = endDate.Value;
-            //}
-
-            //List<Transaction> SelectedTransactions = await _context.Transactions
-            //    .Include(x => x.Category)
-            //    .Where(y => y.Date >= startDateValue && y.Date <= endDateValue)
-            //    .ToListAsync();
-
-
-
-
-
-            ////Tranzactiile pe ultimele 7 zile
-            DateTime DataInceput = DateTime.Today.AddDays(-6);
-            DateTime DataFinal = DateTime.Today;
+         
+            //Tranzactiile pe ultimele 7 zile
+                DateTime DataInceput = DateTime.Today.AddDays(-6);
+                DateTime DataFinal = DateTime.Today;
 
             List<Transaction> SelectedTransactions = await _context.Transactions
                 .Include(x => x.Category)
