@@ -7,11 +7,20 @@
     ViewData["CreareURL"] = "/Categories/Create";
 }
 
-@*<h1>Index</h1>
-*@
-@*<p>
-    <a asp-action="Create">Create New</a>
-</p>*@
+
+@*<head>
+    <style>
+        #deleteModal {
+            position: absolute;
+            top: 30%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+        }
+
+    </style>
+</head>*@
+
 <div class="mb-3">
     <ejs-breadcrumb id="breadcrumb" style="position:relative; left:250px; top:2px;">
 
@@ -31,6 +40,7 @@
             </e-grid-columns>
         </ejs-grid>
     </div>
+
 </div>
 
 <script id="ColoanaTipTemplate" type="text/x-template">
@@ -46,62 +56,55 @@
     <div class="d-flex flex-row justify-content-start d-flex justify-content-center">
         @*Pentru butonul de edit*@
         <a class="btn btn-sm" href="/Categories/Edit/${CategoryID}">
-            <i class="bi bi-pencil-square"></i> 
+           <i class="bi bi-pencil-square icon-edit" style="font-size: 17px;"></i>
         </a>
         @*Pentru butonul de delete*@
         <form action="/Categories/Delete/${CategoryID}" method="post">
             @Html.AntiForgeryToken()
-            <button type="submit" class="btn btn-sm" onclick="return confirm(&quot;Sigur doresti sa stergi aceasta categorie?&quot;)">
-                <i class="bi bi-trash3-fill"></i>
-            </button>           
+            <button type="submit" class="btn btn-sm" onclick="return confirmDelete();" id="deleteBtn">
+                <i class="bi bi-trash3-fill icon-delete" style="font-size: 17px;"></i>
+            </button>
         </form>
+    </div>
+
+    @*Modal pentru popup*@
+
+        <div class="modal" tabindex="-1" role="dialog" id="deleteModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Confirma stergerea</h5>
+                </div>
+                <div class="modal-body">
+                   Sigur doresti sa stergi aceasta categorie?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="deleteCancelBtn">Renunta</button>
+                    <button type="button" class="btn btn-danger" id="deleteConfirmBtn">Sterge</button>
+                </div>
+            </div>
+        </div>
     </div>
 </script>
 
-@*
-<h1>Index</h1>
+<script>
+    function confirmDelete() {
+        // arata modalul
+        $('#deleteModal').modal('show');
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Emoji)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Type)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Emoji)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Type)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.CategoryID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.CategoryID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.CategoryID">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
-*@
+        // se gestioneaza raspunsul utilizatorului
+        $('#deleteConfirmBtn').click(function () {
+            $('#deleteModal').modal('hide');
+            $('#deleteBtn').closest('form').submit(); // se submite formularul care contine butonul de delete
+        });
 
+        $('#deleteCancelBtn').click(function () {
+            $('#deleteModal').modal('hide');
+            return false; // nu se submite formularul
+        });
 
+        return false; // nu se submite formularul inca
+    }
+</script>
 
 

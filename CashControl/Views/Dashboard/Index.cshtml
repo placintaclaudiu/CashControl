@@ -3,9 +3,36 @@
     ViewData["isDashboard"] = true;
 }
 
+@*@{
+    int days = (int)DateTime.Now.DayOfWeek;
+    DateTime lastMonth = DateTime.Now.AddMonths(-1);
+    var weekStart = DateTime.Now.AddDays(-days);
+    var weekEnd = weekStart.AddDays(6);
+    var monthStart = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+    var monthEnd = monthStart.AddMonths(1).AddDays(-1);
+    var lastMonthStart = new DateTime(lastMonth.Year, lastMonth.Month, 1);
+    var lastMonthEnd = lastMonthStart.AddMonths(1).AddDays(-1);
+    var lastYearStart = new DateTime(DateTime.Now.Year - 1, 1, 1);
+    var lastYearEnd = new DateTime(DateTime.Now.Year - 1, 12, 31);
+}*@
+
 
 @*Date range picker*@
 
+@*<div class=" control-section mb-3 d-flex justify-content-end">
+    <div id="wrapper" class="daterangepicker-section col-md-3">
+        <div id="daterangepicker-control">
+            <ejs-daterangepicker id="daterangepicker" placeholder="Alege perioada">
+                <e-daterangepicker-presets>
+                    <e-daterangepicker-preset id="week" label="Saptamana asta" start="weekStart" end="weekEnd"></e-daterangepicker-preset>
+                    <e-daterangepicker-preset id="month" label="Luna asta" start="monthStart" end="monthEnd"></e-daterangepicker-preset>
+                    <e-daterangepicker-preset id="lastmonth" label="Luna trecuta" start="lastMonthStart" end="lastMonthEnd"></e-daterangepicker-preset>
+                    <e-daterangepicker-preset id="year" label="Anul trecut" start="lastYearStart" end="lastYearEnd"></e-daterangepicker-preset>
+                </e-daterangepicker-presets>
+            </ejs-daterangepicker>
+        </div>
+    </div>
+</div>*@
 
 @*Tablou pentru venituri totale, cheltuieli, balanta si tranzactii totale*@
 
@@ -287,7 +314,8 @@
 });
 </script>
 
-@*Script pentru a updata prefixul in input box automat bazat pe ce este selectat*@
+@*Script pentru a updata prefixul in input box automat bazat pe ce este selectat la conversia valutara*@
+
 <script>
     const amountInput = document.getElementById('amount');
     const currencyPrefix = document.getElementById('currency-prefix');
@@ -306,4 +334,3 @@
     fromCurrencyDropdown.addEventListener('change', updateCurrencyPrefix);
     toCurrencyDropdown.addEventListener('change', updateCurrencyPrefix);
 </script>
-

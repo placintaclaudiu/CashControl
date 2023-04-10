@@ -9,7 +9,6 @@ using System.Globalization;
 
 namespace CashControl.Controllers
 {
-
     public class DashboardController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -19,9 +18,9 @@ namespace CashControl.Controllers
 
         public async Task<ActionResult> Index()
         {
-         
+
             //Tranzactiile pe ultimele 7 zile
-                DateTime DataInceput = DateTime.Today.AddDays(-6);
+            DateTime DataInceput = DateTime.Today.AddDays(-6);
                 DateTime DataFinal = DateTime.Today;
 
             List<Transaction> SelectedTransactions = await _context.Transactions
@@ -140,9 +139,6 @@ namespace CashControl.Controllers
                                        zi = zi,
                                        balanta = balanta == null ? 0 : balanta.balanta,
                                    };
-
-         
-
 
             return View();
         }

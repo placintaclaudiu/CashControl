@@ -186,6 +186,10 @@ body {
     padding-left: .5rem;
 }
 
+.navbar-nav li {
+    margin: 0 10px;
+}
+
 .navbar-nav a {
     color: #E5E5E5;
     transition: all ease 0.5s;
@@ -875,3 +879,24 @@ section {
 }
 
 
+/* Iconite delete edit details */
+
+.icon-edit{
+    color: yellow;
+}
+
+.icon-delete {
+    color:red;
+}
+
+.icon-details {
+    color: blue;
+}
+
+/*Modal pentru popup*/
+
+.modal-dialog {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
