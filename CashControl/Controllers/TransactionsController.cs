@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CashControl.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CashControl.Controllers
 {
+    [Authorize]
     public class TransactionsController : Controller
     {
         private readonly ApplicationDbContext _context;

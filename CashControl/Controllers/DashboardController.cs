@@ -1,4 +1,5 @@
 ﻿using CashControl.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.SqlServer.Server;
@@ -9,6 +10,7 @@ using System.Globalization;
 
 namespace CashControl.Controllers
 {
+    [Authorize]
     public class DashboardController : Controller
     {
         private readonly ApplicationDbContext _context;

@@ -11,11 +11,13 @@ html {
 html {
     position: relative;
     min-height: 100%;
-    font-family: "Oswald";
+    /*font-family: "Oswald";*/
+    font-family: "Roboto";
 }
 
 *:not(.fa-solid):not(.fa):not(.e-icons) {
-    font-family: "Oswald";
+   /* font-family: "Oswald";*/
+    font-family: "Roboto";
 }
 
 body {
@@ -67,13 +69,6 @@ body {
     padding: 1rem;
     /*background-color: #fff7e6;*/
     background-color: #d6dbde;
-}
-
-/* Date range picker */
-
-.daterangepicker-container {
-    width: 30%;
-    margin-left: auto;
 }
 
 /*Grid pentru tranzactii si categorii*/
@@ -899,4 +894,30 @@ section {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+/*Logare si inregistrare*/
+
+.login-logout-card .card-header {
+    padding: 0px 0px 12px 0px;
+}
+
+.login-logout-card ul.nav-tabs {
+    margin: 0px 0px -12px 0px;
+}
+
+.login-logout-card li.nav-item {
+    width: 50%;
+}
+
+.login-logout-card a.nav-link {
+    font-size: 1rem;
+    /*color: #495057;*/
+    color: black;
+    text-align: center;
+    padding: 1rem;
+}
+
+.login-logout-card .card-body {
+    padding: 10px 20px;
 }
