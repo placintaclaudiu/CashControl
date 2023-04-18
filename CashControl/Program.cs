@@ -6,6 +6,16 @@ using CashControl.Areas.Identity.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
+//Conectare cu Google
+var services = builder.Services;
+var configuration = builder.Configuration;
+
+services.AddAuthentication().AddGoogle(googleOptions =>
+{
+    googleOptions.ClientId = configuration["Google:ClientId"];
+    googleOptions.ClientSecret = configuration["Google:ClientSecret"];
+});
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
