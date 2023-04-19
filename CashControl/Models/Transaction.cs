@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using CashControl.Areas.Identity.Data;
 
 namespace CashControl.Models
 {
@@ -8,6 +9,10 @@ namespace CashControl.Models
     {
         [Key]
         public int TransactionID { get; set; }
+
+        //Cheie straina user + Navigation Property
+        public string? ApplicationUserId { get; set; }
+        public ApplicationUser? ApplicationUser { get; set; }
 
         //Cheie straina Category + Navigation Property
         [Range(1, int.MaxValue, ErrorMessage = "Selectati o categorie!")]

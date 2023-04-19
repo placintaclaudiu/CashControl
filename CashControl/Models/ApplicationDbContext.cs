@@ -12,5 +12,15 @@ namespace CashControl.Models
         }
         public DbSet<Transaction> Transactions { get; set; }
         public DbSet<Category> Categories { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<ApplicationUser>()
+                .HasMany(u => u.Transactions)
+                .WithOne(t => t.ApplicationUser)
+                .HasForeignKey(t => t.ApplicationUserId);
+        }
     }
 }
