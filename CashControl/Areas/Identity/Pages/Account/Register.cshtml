@@ -5,12 +5,12 @@
     Layout = "~/Areas/Identity/Pages/_AuthentificationLayout.cshtml";
 }
 
-<h1>@ViewData["Title"]</h1>
-
+@*<h1>@ViewData["Title"]</h1>
+*@
 <div class="row">
     <div class="col-md-8">
         <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
-            <h2>Inregistreaza-te!</h2>
+            <h1>Inregistreaza-te!</h1>
             <hr />
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
@@ -45,12 +45,12 @@
                 <label asp-for="Input.ConfirmPassword">Confirma parola</label>
                 <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
             </div>
-            <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary mb-1">Inregistreaza-te</button>
+            <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-success mb-1">Inregistreaza-te</button>
         </form>
     </div>
     <div class="col-md-4 col-md-offset-2">
         <section>
-            <h3>Use another service to register.</h3>
+            <h3>Utilizeaza alt serviciu pentru a te autentifica</h3>
             <hr />
             @{
                 if ((Model.ExternalLogins?.Count ?? 0) == 0)
@@ -71,7 +71,9 @@
                             <p>
                                 @foreach (var provider in Model.ExternalLogins!)
                                 {
-                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                                    <button type="submit" class="btn btn-success btn-lg btn-block" name="provider" value="@provider.Name" title="Inregistreaza-te folosind contul de @provider.DisplayName">
+                                        <i class="bi bi-google"></i>
+                                    Inregistreaza-te cu @provider.DisplayName</button>
                                 }
                             </p>
                         </div>

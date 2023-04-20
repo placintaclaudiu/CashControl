@@ -20,6 +20,8 @@
     </style>
 </head>*@
 
+
+
 <div class="mb-3">
     <ejs-breadcrumb id="breadcrumb" style="position:relative; left:250px; top:2px;">
 
@@ -31,10 +33,10 @@
         <ejs-grid id="transactions" gridLines="None" dataSource="@Model" allowSorting="true" allowPaging="true" locale="ro">
             <e-grid-pagesettings pageSize="7"></e-grid-pagesettings>
             <e-grid-columns>
-                <e-grid-column headerText="Categorie" field="CategorieCuEmoji"></e-grid-column>
+                <e-grid-column headerText="Categorie" field="CategorieCuEmoji" allowSearching="true"></e-grid-column>
                 <e-grid-column headerText="Data transactiei" field="Date" width="150px" type="date" format="dd/MMM/yy"
-                               textAlign="Left"></e-grid-column>
-                <e-grid-column headerText="Total tranzactie" field="SumaCorecta" width="150px" textAlign="Right"></e-grid-column>
+                               textAlign="Left" allowSearching="true"></e-grid-column>
+                <e-grid-column headerText="Total tranzactie" field="SumaCorecta" width="150px" textAlign="Right" allowSearching="true"></e-grid-column>
                 <e-grid-column headerText="Actiuni" template="#ActiuniCRUDTemplate" textAlign="Center"></e-grid-column>
             </e-grid-columns>
         </ejs-grid>
@@ -100,3 +102,14 @@
         return false; // nu se submite formularul inca
     }
 </script>
+
+@*<script>
+    $(document).ready(function () {
+        $("#searchInput").on("input", function () {
+            var searchText = $(this).val().toLowerCase(); // Get the search input value and convert to lowercase
+            var $grid = $("#transactions").ejGrid("instance"); // Get the instance of the EJ2 Grid
+            $grid.search(searchText); // Call the search method of the EJ2 Grid with the search query
+        });
+    });
+</script>*@
+
