@@ -1,10 +1,13 @@
 ﻿@page
 @model AccessDeniedModel
 @{
-    ViewData["Title"] = "Access denied";
+    ViewData["Title"] = "Acces restrictionat!";
 }
 
 <header>
-    <h1 class="text-danger">@ViewData["Title"]</h1>
-    <p class="text-danger">You do not have access to this resource.</p>
+    <div child box>
+        <h1 class="text-danger">@ViewData["Title"]</h1>
+        <p class="text-danger">Pentru a avea acces la aceste resurse este necesar sa utilizati un cont de administrator!!</p>
+    </div>
+    
 </header>
