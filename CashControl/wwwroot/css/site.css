@@ -526,13 +526,6 @@ button.contact_form_submit {
     }
 /* Pagina despre */
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-}
 
 a,
 a:hover,
@@ -829,7 +822,29 @@ section {
                     background: linear-gradient(to top right, #00bfa5, #1de9b6, #64ffda);
                     color: #fff;
                 }
-                    
+ 
+/* carduri pentru home page*/
+
+.card:hover .card-img-top {
+    transform: scale(1.1);
+    transition: all 0.2s ease-in-out;
+}
+
+.card:hover .card-body {
+    opacity: 1;
+    transition: all 0.2s ease-in-out;
+}
+
+.card-img-overlay {
+    opacity: 0;
+    transition: all 0.2s ease-in-out;
+}
+
+.card:hover .card-img-overlay {
+    opacity: 1;
+    transition: all 0.2s ease-in-out;
+}
+
                 
 /* currency convertor*/
 

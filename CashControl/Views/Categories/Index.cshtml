@@ -1,25 +1,15 @@
 ﻿@model IEnumerable<CashControl.Models.Category>
 
 @{
-    //ViewData["Title"] = "Index";
     ViewData["TitluPagina"] = "Categorii";
-    ViewData["CreareText"] = "+ Categorie noua";
+    @if (User.IsInRole("Administrator"))
+    {
+        ViewData["CreareText"] = "+ Categorie noua";
+
+    }
+    //ViewData["CreareText"] = "+ Categorie noua";
     ViewData["CreareURL"] = "/Categories/Create";
 }
-
-
-@*<head>
-    <style>
-        #deleteModal {
-            position: absolute;
-            top: 30%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 9999;
-        }
-
-    </style>
-</head>*@
 
 <div class="mb-3">
     <ejs-breadcrumb id="breadcrumb" style="position:relative; left:250px; top:2px;">
@@ -36,7 +26,11 @@
             <e-grid-columns>
                 <e-grid-column headerText="Categorie" field="DeunumireCuEmoji" allowSearching="true"></e-grid-column>
                 <e-grid-column headerText="Tip" template="#ColoanaTipTemplate" width="150px"></e-grid-column>
-                <e-grid-column headerText="Actiuni" template="#ActiuniCRUDTemplate" textAlign="Center"></e-grid-column>
+                @*<e-grid-column headerText="Actiuni" template="#ActiuniCRUDTemplate" textAlign="Center"></e-grid-column>*@
+                @if (User.IsInRole("Administrator"))
+                    {
+                        <e-grid-column headerText="Actiuni" template="#ActiuniCRUDTemplate" textAlign="Center"></e-grid-column>
+                    }
             </e-grid-columns>
         </ejs-grid>
     </div>
@@ -51,41 +45,43 @@
     ${/if}
 </script>
 
-
-<script id="ActiuniCRUDTemplate" type="text/x-template">
-    <div class="d-flex flex-row justify-content-start d-flex justify-content-center">
+@if (User.IsInRole("Administrator"))
+{
+    <script id="ActiuniCRUDTemplate" type="text/x-template">
+        <div class="d-flex flex-row justify-content-start d-flex justify-content-center">
         @*Pentru butonul de edit*@
         <a class="btn btn-sm" href="/Categories/Edit/${CategoryID}">
-           <i class="bi bi-pencil-square icon-edit" style="font-size: 17px;"></i>
+        <i class="bi bi-pencil-square icon-edit" style="font-size: 17px;"></i>
         </a>
         @*Pentru butonul de delete*@
         <form action="/Categories/Delete/${CategoryID}" method="post">
-            @Html.AntiForgeryToken()
-            <button type="submit" class="btn btn-sm" onclick="return confirmDelete();" id="deleteBtn">
-                <i class="bi bi-trash3-fill icon-delete" style="font-size: 17px;"></i>
-            </button>
+        @Html.AntiForgeryToken()
+        <button type="submit" class="btn btn-sm" onclick="return confirmDelete();" id="deleteBtn">
+        <i class="bi bi-trash3-fill icon-delete" style="font-size: 17px;"></i>
+        </button>
         </form>
-    </div>
+        </div>
 
-    @*Modal pentru popup*@
+        @*Modal pentru popup*@
 
         <div class="modal" tabindex="-1" role="dialog" id="deleteModal">
         <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Confirma stergerea</h5>
-                </div>
-                <div class="modal-body">
-                   Sigur doresti sa stergi aceasta categorie?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="deleteCancelBtn">Renunta</button>
-                    <button type="button" class="btn btn-danger" id="deleteConfirmBtn">Sterge</button>
-                </div>
-            </div>
+        <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title">Confirma stergerea</h5>
         </div>
-    </div>
-</script>
+        <div class="modal-body">
+        Sigur doresti sa stergi aceasta categorie?
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="deleteCancelBtn">Renunta</button>
+        <button type="button" class="btn btn-danger" id="deleteConfirmBtn">Sterge</button>
+        </div>
+        </div>
+        </div>
+        </div>
+    </script>
+}
 
 <script>
     function confirmDelete() {

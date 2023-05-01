@@ -1,8 +1,87 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿
+<h1>@ViewData["Title"]</h1>
 
-<div class="text-center">
-    <h1 class="display-4">Pagina de prezentare cu modificari aferente</h1>
-    <img src="~/poze/cash control incercare logo.png" />
-</div>
+<section class="about-section">
+    <div class="container">
+        <div class="row">
+            <div class="content-column col-lg-6 col-md-12 col-sm-12 order-2">
+                <div class="inner-column">
+                    <div class="sec-title">
+                        <h2>Controlează-ți cheltuielile cu CashControl - economisește bani, trăiește mai bine!</h2>
+                    </div>
+                    <div class="text">Bun venit la CashControl, aplicația ta de urmărire a cheltuielilor personale! Cu ajutorul nostru, vei putea să îți gestionezi bugetul, să urmărești cheltuielile și să economisești bani.</div>
+                    <div class="text">
+                        Cu CashControl, poți să introduci rapid toate cheltuielile tale în aplicație, fie că e vorba de facturi, cumpărături sau alte cheltuieli zilnice. Poți folosi aplicația noastra pentru a vedea exact cât ai cheltuit pe mâncare, transport sau alte necesități.
+                        Poți să iți urmărești veniturile și cheltuielile prin intermediul tabloului principal unde sunt afișate statistici în ceea ce privește bugetul tău prin intermediul unor grafice ușor de înțeles. De asemenea, pe lângă venituri și cheltuieli îți poți urmări balanța, numărul de tranzacții dar și ultimele tranzacții inregistrate.
+                    </div>
+
+                    <div class="btn-box">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <a class="theme-btn btn-style-one" href="/Identity/Account/Manage">Salut, @User.Identity.Name!</a>
+                            <form id="logoutForm" asp-area="Identity" asp-page="/Account/Logout" method="post">
+                                <button type="submit" class="theme-btn btn-style-one">Deconectare</button>
+                            </form>
+                        }
+                        else
+                        {
+                            <a class="theme-btn btn-style-one" asp-area="Identity" asp-page="/Account/Register">Inregistrare</a>
+                            <a class="theme-btn btn-style-one" asp-area="Identity" asp-page="/Account/Login">Autentificare</a>
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <!-- Image Column -->
+            <div class="image-column col-lg-6 col-md-12 col-sm-12">
+                <div class="inner-column wow fadeInLeft">
+                    <figure class="image-1"><a  class="lightbox-image" data-fancybox="images"> <img src="~/poze/cash control incercare logo.png" />  </a></figure>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="sec-title">
+            <span class="title">Our Future Goal</span>
+            <h2><strong>Maximizati-va controlul financiar</strong></h2>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-md-4 col-sm-12">
+                <div class="inner-column wow fadeInLeft">
+                    <div class="card h-100" style="border-radius: 30px; overflow: hidden;">
+                        <img class="card-img-top" src="~/poze/currency.png" alt="Card image cap">
+                        <div class="card-body d-flex flex-column text-center" style="height: 300px;">
+                            <p class="card-text mb-0"><strong>Conversie valutara</strong> <br /> Urmariti mai usor cheltuielile chiar si daca ai vauta prin functionalitatea de conversie valutara in 5 monede de circulatie internationala.</p>
+                            <div class="mt-auto"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-12">
+                <div class="inner-column wow fadeInLeft">
+                    <div class="card h-100" style="border-radius: 30px; overflow: hidden;">
+                        <img class="card-img-top" src="~/poze/walletcard.png" alt="Card image cap">
+                        <div class="card-body d-flex flex-column text-center" style="height: 300px;">
+                            <p class="card-text mb-0"><h3><strong>Controleaza cheltuielile</strong></h3> <br />  Asigurati-va ca aveti sub control toate cheltuielile si ca puteti revedea si urmari fiecare cheltuiala sau venit al dumneavoastra.</p>
+                            <div class="mt-auto"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-12">
+                <div class="inner-column wow fadeInLeft">
+                    <div class="card h-100" style="border-radius: 30px; overflow: hidden;">
+                        <img class="card-img-top" src="~/poze/calculator.png" alt="Card image cap">
+                        <div class="card-body d-flex flex-column text-center" style="height: 300px;">
+                            <p class="card-text mb-0"><h3><strong>Cheltuieste inteligent</strong></h3> <br />  Luati decizii financiare inteligente cu functia noastra de calculare a balantei pe baza veniturilor si a cheltuielilor.</p>
+                            <div class="mt-auto"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
