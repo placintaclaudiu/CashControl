@@ -1,7 +1,7 @@
 ﻿@page
 @model EnableAuthenticatorModel
 @{
-    ViewData["Title"] = "Configure authenticator app";
+    ViewData["Title"] = "Configureati aplicatia de autentificare";
     ViewData["ActivePage"] = ManageNavPages.TwoFactorAuthentication;
 }
 
@@ -22,8 +22,8 @@
         </li>
         <li>
             <p>Scanati codul QR sau introduceti aceasta cheie <kbd>@Model.SharedKey</kbd> in aplicatia dvs. de autentificare cu doi factori.</p>
-            <div class="alert alert-info">Learn how to <a href="https://go.microsoft.com/fwlink/?Linkid=852423">activati generarea codului QR</a>.</div>
-            <div id="qrCode"></div>
+@*            <div class="alert alert-info">Invata cum sa <a href="https://go.microsoft.com/fwlink/?Linkid=852423">activati generarea codului QR</a>.</div>
+*@            <div id="qrCode"></div>
             <div id="qrCodeData" data-url="@Model.AuthenticatorUri"></div>
         </li>
         <li>
@@ -39,7 +39,7 @@
                             <label asp-for="Input.Code" class="control-label form-label">Cod de verificare</label>
                             <span asp-validation-for="Input.Code" class="text-danger"></span>
                         </div>
-                        <button type="submit" class="w-100 btn btn-lg btn-succsess">Verifica</button>
+                        <button type="submit" class="w-100 btn btn-lg btn-primary">Verifica</button>
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     </form>
                 </div>
@@ -50,4 +50,17 @@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+
+        <script>
+        $(()=>{
+            var qrcode = new QRCode(document.getElementById("qrCode"), {
+                text: "@Html.Raw(Model.AuthenticatorUri)",
+                width: 300,
+                height: 300,
+                colorDark : "#000000",
+                colorLight : "#ffffff",
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        })
+        </script>
 }

@@ -25,7 +25,7 @@
             {
                 <div class="alert alert-danger">
                     <strong>Mai aveti 1 cod de recuperare.</strong>
-                    <p>You can <a asp-page="./GenerateRecoveryCodes">generate a new set of recovery codes</a>.</p>
+                    <p>Poti <a asp-page="./GenerateRecoveryCodes">genera un nou set de coduri de recuperare</a>.</p>
                 </div>
             }
             else if (Model.RecoveryCodesLeft <= 3)
@@ -42,11 +42,11 @@
                     <button type="submit" class="btn btn-primary">Uita acest browser</button>
                 </form>
             }
-            <a asp-page="./Disable2fa" class="btn btn-primary">Disable 2FA</a>
+            <a asp-page="./Disable2fa" class="btn btn-primary">Dezactiveaza 2FA</a>
             <a asp-page="./GenerateRecoveryCodes" class="btn btn-primary">Reseteaza coduri de recuperare</a>
         }
 
-        <h4>Authenticator app</h4>
+        <h4>Aplicatia de autentificare</h4>
         @if (!Model.HasAuthenticator)
         {
             <a id="enable-authenticator" asp-page="./EnableAuthenticator" class="btn btn-success>Adauga aplicatie de autentificare</a>

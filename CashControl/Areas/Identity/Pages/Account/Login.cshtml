@@ -135,16 +135,55 @@
                 <h1>Bine ai revenit!</h1>
                 <hr />
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-floating mb-3">
+                @*<div class="form-floating input-group mb-3">
                     <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" />
+                    <div class="input-group-prepend">
+                        <span class="input-group-text h-100 text-black d-flex justify-content-center align-items-center">
+                            <i class="bi bi-envelope-at"></i>
+                        </span>
+                    </div>
                     <label asp-for="Input.Email" class="form-label">Email</label>
                     <span asp-validation-for="Input.Email" class="text-danger"></span>
-                </div>
-                <div class="form-floating mb-3">
-                        <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" />
-                        <label asp-for="Input.Password" class="form-label">Parola</label>
+                </div>*@
+
+               <div>
+                    <label asp-for="Input.Email" class="form-label">Email</label>
+                    <div class="form-floating input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text h-100 text-black d-flex justify-content-center align-items-center">
+                                <i class="bi bi-envelope-at"></i>
+                            </span>
+                    </div>
+                        <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" />
+                        <span asp-validation-for="Input.Email" class="text-danger"></span>
+                    </div>
+               </div>
+
+                <div>
+                    <label asp-for="Input.Password" class="form-label">Parola</label>
+                    <div class="form-floating input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text h-100 text-black d-flex justify-content-center align-items-center">
+                                <i class="bi bi-lock"></i>
+                            </span>
+                        </div>
+                        <input asp-for="Input.Password" class="form-control" autocomplete="username" aria-required="true" />
                         <span asp-validation-for="Input.Password" class="text-danger"></span>
+                    </div>
                 </div>
+
+
+
+@*                <div class="form-floating input-group mb-3">
+                    <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" />
+                       <div class="input-group-prepend">
+                        <span class="input-group-text h-100 text-black d-flex justify-content-center align-items-center">
+                            <i class="bi bi-lock"></i>
+                        </span>
+                      </div>
+                      <label asp-for="Input.Password" class="form-label">Parola</label>
+                      <span asp-validation-for="Input.Password" class="text-danger"></span>
+                </div>*@
                 
                 <div>
                     <div class="checkbox">
