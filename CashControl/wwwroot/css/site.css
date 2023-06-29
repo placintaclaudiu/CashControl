@@ -193,7 +193,7 @@ body {
     .navbar-nav a:hover,
     .navbar-nav a:focus,
     .navbar-nav a:active,
-    .navbar-nav a.hilite {
+    .navbar-nav a.hilite{
         color: #BFBFBF;
         /*background: #33cc33;*/
         background: linear-gradient(to top right, #00bfa5, #1de9b6, #64ffda);

@@ -42,7 +42,7 @@
     <div class="col-md-3">
         <div class="d-flex flex-row tablou sidepanel balanta">
             <div class="d-flex flex-column justify-content-center p-5">
-                <i class="bi bi-cash-stack"></i>
+                <i class="bi bi-cash-stack" style="font-size: 2rem;"></i>
             </div>
             <div class="d-flex flex-column m-auto py-3">
                 <span class="lead">Balanta</span>
@@ -68,7 +68,7 @@
     <div class="col-md-3">
         <div class="d-flex flex-row tablou sidepanel cheltuiala">
             <div class="d-flex flex-column justify-content-center p-5">
-                <i class="bi bi-cash-stack"></i>
+                <i class="bi bi-cash-stack" style="font-size: 2rem;"></i>
             </div>
             <div class="d-flex flex-column m-auto py-3">
                 <span class="lead">Cheltuieli totale</span>
@@ -81,7 +81,7 @@
     <div class="col-md-3">
         <div class="d-flex flex-row tablou sidepanel nrtranzactii">
             <div class="d-flex flex-column justify-content-center p-5">
-                <i class="bi bi-cash-stack"></i>
+                <i class="bi bi-cash-stack" style="font-size: 2rem;"></i>
             </div>
             <div class="d-flex flex-column m-auto py-3">
                 <span class="lead">Tranzactii totale</span>
@@ -333,4 +333,31 @@
     // Add event listeners to update the currency prefix whenever the dropdown values change
     fromCurrencyDropdown.addEventListener('change', updateCurrencyPrefix);
     toCurrencyDropdown.addEventListener('change', updateCurrencyPrefix);
+</script>
+
+
+
+
+ <script>
+    const API_KEY = 'b43c0b9ea6d38b7ad7ef5e53'; 
+    const convertButton = document.querySelector('#convert');
+    const resultElement = document.querySelector('#result');
+
+    convertButton.addEventListener('click', () => {
+        const fromCurrency = document.querySelector('#from-currency').value;
+        const toCurrency = document.querySelector('#to-currency').value;
+        const amount = document.querySelector('#amount').value;
+
+        const apiUrl = `https://v6.exchangerate-api.com/v6/${API_KEY}/pair/${fromCurrency}/${toCurrency}/${amount}`;
+
+    fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+        const convertedAmount = data.conversion_result.toFixed(2);
+        resultElement.textContent = `${amount} ${fromCurrency} = ${convertedAmount} ${toCurrency}`;
+    })
+    .catch(error => {
+       resultElement.textContent = 'Eroare la conversia monedei. Vă rugăm să încercați din nou mai târziu.';
+    });
+});
 </script>

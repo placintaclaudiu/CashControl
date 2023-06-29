@@ -9,7 +9,7 @@ namespace CashControl.Models
         [Key]
         public int CategoryID { get; set; }
 
-        [Column(TypeName = "nvarchar(60)")] // Tipul de date
+        [Column(TypeName = "nvarchar(60)")]
         [Required(ErrorMessage = "Câmpul este obligatoriu!")]
         public string Name { get; set; }
 
